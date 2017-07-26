@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>inline-block layout</title>
+        <style>
+            .inline{
+                display: inline-block;
+                /* 垂直排序 */
+                vertical-align: top;
+            }
+            .nav{
+                width: 20%;
+                border:2px yellow solid;
+
+            }
+            .content{
+                width:78%;
+                border:2px blue solid;
+
+            }
+            .container{
+                border:2px cyan solid;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="nav inline">
+            <ul>
+                <li>list1</li>
+                <li>list2</li>
+                <li>list3</li>
+                <li>list4</li>
+                <li>list5</li>
+            </ul>
+        </div>
+        <div class="content inline">
+            <div class="section">
+                inline-block layout 布局
+            </div>
+            <div class="section">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
