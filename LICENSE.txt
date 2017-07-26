@@ -1,0 +1,4 @@
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+ni wo ta 123 
+g192.168
