@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+	<style>
+		div{
+			margin-top: 50px;
+			margin-left: 50px;
+			background-color: red;
+			width: 100px;
+			height: 100px;
+
+			/*将one动画,绑定到div上*/
+			animation: one 10s infinite linear;
+		}
+
+		/*keyframe 决定了动画变换的属性*/
+		/*from{css的属性 动画原始}*/
+		/*to{css属性 动画结束}*/
+		@keyframes one{
+			from{background-color: red;
+				transform: rotate(0deg);}
+			to{ background-color: black;
+				transform: rotate(360deg)}
+		}
+
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

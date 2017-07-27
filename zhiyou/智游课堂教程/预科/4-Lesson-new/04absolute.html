@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>absolute绝对定位</title>
+	<style>
+
+		div{
+			width: 500px;
+			height: 500px;
+			background-color: yellow;
+			
+			position: absolute;
+			top: 100px;
+			left: 300px;
+		}
+		h1{
+			width: 150px;
+			height: 50px;
+			background-color: red;
+		}
+		.aa{
+			position: absolute;
+			/*如果有父元素并且父元素定位,依据与父元素*/
+			top: 50px;
+			left: 100px;
+		}
+		.bb{
+			position: absolute;
+			top: 110px;
+			left: 150px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 绝对定位的位置相对于已经定位的父元素的位置
+	如果没有父元素,则相对html的位置,绝对定位是相对于文档流来说的 -->
+
+	<div>
+		<h1 class="aa">我是内容1</h1>
+		<h1 class="bb">我是内容2</h1>
+	</div>
+
+	
+</body>
+</html>

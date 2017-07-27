@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0px;
+			padding: 0px;
+		}
+		div{
+			margin: 5px;
+			background: red;
+			border: yellow solid 4px;
+		}
+	
+		/*容器*/
+		.container{
+			/*居中*/
+			margin: 0px auto;
+			width: 800px;
+			height: 600px;
+		}
+		/*头部*/
+		.header{
+			height: 50px;
+		}
+		/*侧边栏*/
+		.sideBar{
+			float: left;
+			height: 440px;
+			width: 200px;
+		}
+		/*内容*/
+		.content{
+			float: left;
+			height: 440px;
+			width: 340px;
+		}
+		/*尾部*/
+		.footer{
+			/*清除浮动,让footer避开浮动元素*/
+			clear: both;
+			height: 50px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header"></div>
+		<div class="sideBar"></div>
+		<div class="content"></div>
+		<div class="sideBar"></div>
+		<div class="footer"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+	<style>
+		img{
+			display: block;
+			width: 500px;
+			margin: 0 auto;
+
+			/*将动画绑定到标签上*/
+			/*简写*/
+			
+		}
+
+		h1{
+			width: 200px;
+			border: solid 1px red;
+			animation:rotate 3s linear infinite;
+		}
+
+
+		/*编一个动画:旋转的动画;*/
+		@keyframes rotate {
+			/*从什么状态变换成什么状态*/
+			from{
+				transform: rotate(0deg);
+				background-color: white;
+
+			}
+			to{
+				transform: rotate(360deg);
+				background-color: green;
+				color: red;
+			}
+		}
+	</style>
+</head>
+<body>
+	<img src="http://img0.imgtn.bdimg.com/it/u=1838812525,1935393563&fm=26&gp=0.jpg" alt="">
+	<h1>我是内容</h1>
+</body>
+</html>

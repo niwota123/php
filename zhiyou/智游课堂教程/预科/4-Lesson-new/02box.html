@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒子模型</title>
+	<style>
+		body{
+			/*弹性布局*/
+			display: flex;
+			/*纵轴居中*/
+			align-items: center;
+		}
+
+		h1{
+			width:300px; 
+			/*auto 自动调节*/
+			margin: 0 auto;
+			text-align: center;
+
+			/*设置border*/
+			/*边框的样式*/
+			border-style: double;
+			/*边框的宽度*/
+			border-width: 5px;
+			/*边框的颜色*/
+			border-color: Cyan ;
+
+			background-color: red;
+			/*内边距*/
+			/*padding-top: 10px;
+			padding-left: 10px;
+			padding-bottom: 10px;*/
+			
+			/*外边距*/
+			/*margin-top: 100px;
+			margin-left: 50px;
+			margin-bottom: 50px;*/
+
+		}
+
+		h2{
+			/*简写*/
+			border: double 5px Cyan;
+			padding: 10px;
+			margin: 50px;
+		}
+
+	</style>
+</head>
+<body>
+<!-- 	一个完整的盒模型由4部分组成 
+	margin-外边距
+	border-边框
+	padding -内边距
+	content-内容 -->
+
+	<!-- border 边框 -->
+	<h1>我是标题</h1>
+
+	<!-- <h2>我是标题 h2</h2> -->
+
+</body>
+	
+</html>

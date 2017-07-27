@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>通过媒体查询来布局</title>
+        <style>
+            .container{
+                border: cyan 2px solid;
+            }
+            .nav{
+                border: yellow 2px solid;
+
+            }
+            .section{
+                border: blue 2px solid;
+            }
+
+            /* 使用媒体查询写布局需要注意:1,不同屏幕间的css是独立的; */
+            /* 大屏幕的布局css */
+            @media screen and (min-width:600px){
+                .nav{
+                    width: 20%;
+                    float: left;
+                }
+                .section{
+                    margin-left: 20%;
+                }
+            }
+
+            /* 小屏幕的布局css */
+            @media screen and (max-width:599px){
+                .nav li{
+                    display:inline;
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="nav">
+            <ul>
+                <li>list1</li>
+                <li>list2</li>
+                <li>list3</li>
+                <li>list4</li>
+                <li>list5</li>
+            </ul>
+        </div>
+        <div class="section">媒体查询的布局</div>
+        <div class="section">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>
+        </div>
+    </div>
+    </body>
+</html>
