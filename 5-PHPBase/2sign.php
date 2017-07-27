@@ -5,7 +5,7 @@
  * @Author: superking
  * @Date:   2017-07-27 11:00:29
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-27 14:36:21
+ * @Last Modified time: 2017-07-27 14:44:24
  */
 
 //运算
@@ -136,6 +136,7 @@ var_dump(true or false);//true
 var_dump(false or false);//false
 
 echo '<hr>';
+//异或 不一样的才为真
 var_dump(true xor true);//false
 var_dump(true xor false);//true
 var_dump(false xor false);//false
