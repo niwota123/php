@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-28 11:00:54
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-28 12:01:21
+ * @Last Modified time: 2017-07-28 14:12:28
  */
 //下标为自动填充的数字----->索引数组
 $arr = array('a','b','c','d');
@@ -63,10 +63,10 @@ print_r($arr);
 
 //动态创建一个关联数组
 $arry = [];
-$array['a']='a';
-$array['b']='b';
-$array['c']='c';
-$array['d']='d';
+$array['name']='a';
+$array['age']='b';
+$array['sex']='c';
+$array['tel']='d';
 
 
 //动态创建一个混合数组
