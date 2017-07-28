@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-27 15:06:02
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-27 17:41:05
+ * @Last Modified time: 2017-07-28 09:14:54
  */
 //条件语句
 //不同的条件,处理不同的代码
@@ -289,6 +289,7 @@ for ($i=0; $i < 10 ; $i++) {
 <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+
 </head>
 <body>
 <table rules="all" border="1">
@@ -298,7 +299,7 @@ for ($i=0; $i < 10 ; $i++) {
             //写列
             for ($j=1; $j <=$i ; $j++) {
                 $a = $i*$j;
-                echo "<td style='padding:5px;'>{$i}&times;{$j}={$a}</td>";
+                echo "<td style='padding:5px;font-size:10px;'>{$i}&times;{$j}={$a}</td>";
             }
              echo "</tr>";
         }
