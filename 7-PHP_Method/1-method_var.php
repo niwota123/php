@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-31 14:40:08
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-31 15:20:42
+ * @Last Modified time: 2017-07-31 15:39:02
  */
 //参数
 
@@ -45,3 +45,37 @@ echo '<br>'.custom_abs(-6,-5);
 
 //练习:声明一个函数,功能动态获得一个table 参数 rows cols 可选参数:table的背景颜色
 
+function creatTable($rows=0,$cols=0,$bgColor='cyan'){
+    echo "<table border='1' bgcolor='$bgColor'>";
+    for($i = 1;$i <= $rows;$i++){
+        echo '<tr>';
+         for ($j = 1;$j<=$cols;$j++){
+            echo '<td>x</td>';
+         }
+        echo '</tr>';
+    }
+    echo "</table>";
+}
+
+ creatTable(9,9,'red');
+
+ creatTable(9,15,'yellow');
+
+
+ creatTable(9,20,'blue');
+
+
+?>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <?php
+    creatTable(9,9);
+     ?>
+</body>
+</html> -->
