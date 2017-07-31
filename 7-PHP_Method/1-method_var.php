@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-31 14:40:08
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-31 15:11:02
+ * @Last Modified time: 2017-07-31 15:20:42
  */
 //参数
 
@@ -44,3 +44,4 @@ function custom_abs($a=0,$b=0){
 echo '<br>'.custom_abs(-6,-5);
 
 //练习:声明一个函数,功能动态获得一个table 参数 rows cols 可选参数:table的背景颜色
+
