@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-31 09:09:58
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-31 09:58:02
+ * @Last Modified time: 2017-07-31 10:36:32
  */
 //展示消息---首页
 // 从文件读取数据1,有数据 2,没数据
@@ -42,7 +42,7 @@ if ($fileContent) {
         <?php
 
         // 遍历数据获得单条msg
-        foreach ($msgList as $msgData) {
+        foreach ($msgList as  $id => $msgData) {
             list($user,$msg) = $msgData;
             echo '<tr>';
             echo "<td>$user</td>";
