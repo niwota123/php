@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-07-31 14:40:08
  * @Last Modified by:   superking
- * @Last Modified time: 2017-07-31 15:39:02
+ * @Last Modified time: 2017-07-31 15:41:07
  */
 //参数
 
@@ -57,11 +57,10 @@ function creatTable($rows=0,$cols=0,$bgColor='cyan'){
     echo "</table>";
 }
 
+
+
  creatTable(9,9,'red');
-
  creatTable(9,15,'yellow');
-
-
  creatTable(9,20,'blue');
 
 
