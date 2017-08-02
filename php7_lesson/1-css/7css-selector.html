@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>组合选择器</title>
+        <style>
+        *{
+            border: 2px solid gold;
+        }
+            /* 后代选择器 */
+            div p{
+               color: cyan;;
+            }
+
+            /* 子元素选择器 */
+            div>p{
+                background-color:yellow;
+            }
+            /* 后代和子元素的区别:后代是所有的后代(子元素和孙元素),子是只有子元素 */
+
+            /* 相邻兄弟选择器 */
+            p+h1{
+                font-size: 20px;
+                background-color:red;
+            }
+            /* 后续兄弟选择器 */
+            p~h1{
+                background-color:green;
+            }
+
+            /* 相邻和后续的区别:相邻只有一个,后续:后面所有的是多个 */
+
+
+            /* 分组和嵌套 */
+            p,h1{
+                border: solid 1px red;
+            }
+
+            /* 嵌套 */
+            #bb p{
+
+            }
+
+            /* 伪类选择器 */
+            h1:hover{
+                background-color:blue;
+            }
+
+            /* 第一个子元素*/
+            ul li:first-child{
+                background-color:red;
+            }
+            p span:first-child{
+                background-color:green;
+            }
+
+            /* 选择第n个元素 */
+            .uu li:nth-child(2n-1){
+                /* background-color:black; */
+            }
+
+/*             h1:before{
+                content: "abcdefg";
+                background-color:pink;
+
+            } */
+            h1:after{
+                content:"after";
+                text-shadow: 2px 2px pink;
+
+            }
+            h1:first-letter{
+                color:red;
+                font-size:50px;
+            }
+
+            /* 属性选择器 */
+/*             [属性]
+            [属性=值] */
+
+/*             [name='b']{
+                    text-decoration: line-through;
+                } */
+            /* ~=属性中 包含 这个单词 */
+            [name~='hello']{
+                text-decoration: line-through;
+            }
+
+            /* 属性的值必须是a开头 */
+            [name^='a']{
+text-decoration: line-through;
+            }
+            /* 属性的值必须已a结尾 */
+            [name$='a']{
+text-decoration: line-through;
+            }
+            /* 属性的值必须包含a这个字母 */
+            [name*='a']{
+text-decoration: line-through;
+            }
+
+            [name|='demo']{
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="aa" id="bb">
+            <p>我是p元素</p>
+            <h1>
+                <p>我是h1的子元素</p>
+            </h1>
+            <h1>我是第二个h1</h1>
+        </div>
+
+        <h1>我是上</h1>
+        <p>我也p元素</p>
+        <h1>我也是吼吼吼</h1>
+        <h1>我是后后后</h1>
+
+        <ul>
+            <li>aaaaa</li>
+            <li>aaaaa</li>
+            <li>aaaaa</li>
+        </ul>
+
+        <p><span>a</span><span>a</span><span>a</span></p>
+
+
+        <ul class="uu">
+            <li>shuju</li>
+            <li>shuju</li>
+            <li name = "demo-sss">shuju</li>
+            <li name='dad'>shuju</li>
+            <li name ='abc'>shuju</li>
+            <li name ='ccca'>shuju</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>flex 布局</title>
+        <style>
+            .container{
+                border:2px cyan solid;
+                display: flex;
+            }
+            .nav{
+                border:2px yellow solid;
+               flex:1;
+            }
+            .content{
+                border:2px blue solid;
+                flex:2;
+/*                 flex:扩展 缩放 base(固定宽度);
+                flex: auto; 1 1 auto;
+                flex:initial; 0 1 auto;
+                flex:none;0 0  auto; */
+            }
+            .section{
+                border:2px green solid;
+            }
+            .header{
+                border:2px green solid;
+
+            }
+        </style>
+    </head>
+    <body>
+    <div class="header">woshi toubu </div>
+    <div class="container">
+
+        <div class="nav">
+            <ul>
+                <li>li1</li>
+                <li>li2</li>
+                <li>li3</li>
+                <li>li4</li>
+                <li>li5</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="section">title</div>
+            <div class="section">content</div>
+        </div>
+         <div class="nav">
+            <ul>
+                <li>li1</li>
+                <li>li2</li>
+                <li>li3</li>
+                <li>li4</li>
+                <li>li5</li>
+            </ul>
+        </div>
+
+
+    </div>
+    <div class="header">woshi toubu </div>
+    </body>
+</html>

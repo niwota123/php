@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>html基础常用标签全覆盖</title>
+    </head>
+    <body>
+
+    <!-- 基本标签 -->
+
+    <h1>我是标题1</h1>
+    <h2>我是标题2</h2>
+    <h3>我是标题3</h3>
+    <h4>我是标题4</h4>
+    <h5>我是标题5</h5>
+    <h6>我是标题6</h6>
+    <p>这是个段落</p>
+    <br />换行
+    <hr />水平线
+
+    <!-- 文本格式化的标签 -->
+    <b>粗体</b>
+    <i>斜体</i>
+    <small>小的文本</small>
+    <strong>粗的文本</strong>
+    <em>强调的文本</em>
+<pre>a
+    b
+    c
+    c
+    c
+    c</pre>
+
+    <code>echo 'hello php';</code>
+    <kbd>键盘输入</kbd>
+
+
+    <address>地址</address>
+    <del>删除文字</del>
+    <ins>插入文字</ins>
+     x<sub>y下标</sub>
+     z<sup>x上标</sup>
+
+    <!-- 链接 -->
+    <a href="">普通链接</a>
+    <!-- 图片链接 -->
+    <a href=""><img src="" alt="" /></a>
+    <!-- 按钮链接 -->
+    <a href=""><button>按钮</button></a>
+    <a href="mailto:aaa@163.com" target="_blank">发送邮件</a>
+
+    <!-- 页面内跳转 -->
+    <a id = 'middle'></a>
+    <a href="#middle"></a>
+
+    <!-- 图片 如果不显示图片会显示alt中的内容-->
+    <img src="" alt="" />
+
+    <!-- 区块 -->
+    <div>文档中的块级元素</div>
+    <span>文档中的内联元素</span>
+
+    <!-- 列表 -->
+    <!-- 无序 -->
+    <ul>
+        <li>列表1</li>
+        <li>列表2</li>
+        <li>列表3</li>
+    </ul>
+    <!-- 有序 -->
+    <ol>
+        <li>列表1</li>
+        <li>列表2</li>
+        <li>列表3</li>
+    </ol>
+    <!-- 自定的列表 -->
+    <dl>
+        <dt>项目一</dt>
+            <dd>描述一</dd>
+            <dd>描述二</dd>
+        <dt>项目二</dt>
+            <dd>描述一</dd>
+            <dd>描述二</dd>
+    </dl>
+    <!-- 表格 -->
+    <table border="1" rules="all">
+        <tr>
+        <!-- th 表格头,有加粗的效果 -->
+            <th>姓名</th>
+            <th>年龄</th>
+        </tr>
+        <tr>
+            <td>小安</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>小李</td>
+            <td>33</td>
+        </tr>
+    </table>
+
+    <!-- 表单  input标签包含在form标签内部-->
+    <form action="" method="">
+        <!-- 文本 -->
+        <input type="text" />
+        <!-- 密码 -->
+        <input type="password" />
+        <!-- 单选 -->
+        <input type="radio" />
+        <!-- 多选 -->
+        <input type="checkbox" />
+        <!-- 提交 -->
+        <input type="submit" />
+
+
+        <!-- 文件上传 -->
+        <input type="file" />
+        <!-- 重置 -->
+        <input type="reset" />
+        <!-- 隐藏的页面不可见的 -->
+        <input type="hidden" />
+        <!-- 单独的按钮 -->
+        <input type="button" />
+
+        <!-- 新的试一下 -->
+        <input type="color" />
+        <input type="date" />
+        <input type="number" />
+        <input type="search" />
+        <input type="url" />
+        <input type="week" />
+
+        <!-- 下拉框 -->
+        <select name="" id="">
+            <option value='a'>aaaaa</option>
+            <option value="b">bbbbb</option>
+            <option value="c">ccccc</option>
+        </select>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </form>
+
+    <!-- 框架 -->
+    <iframe src="http://www.baidu.com" frameborder="0" width="100%"></iframe>
+    <iframe src="http://www.sina.com" frameborder="1" width="100%"></iframe>
+
+    <!-- 字符实体 -->
+    <h1>&lt;html&trade; &gt;   &copy;   &reg;</h1>
+    </body>
+</html>
