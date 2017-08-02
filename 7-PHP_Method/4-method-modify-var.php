@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-08-01 09:23:07
  * @Last Modified by:   superking
- * @Last Modified time: 2017-08-01 09:42:38
+ * @Last Modified time: 2017-08-02 09:39:51
  */
 //可变参数的函数
 function test(){
@@ -29,20 +29,28 @@ test('a','b','c',1,2,3,'imok');
 
 //不定参数的方法
 //实现array()的功能
-function custom_array(){
+//系统规则 key=>value 自己的规则 key:value
 
-    $key=$arr=null;
-    for ($i=0;$i<func_num_args();$i++){
-        if ($i%2==0) {
-            $key = func_get_arg($i);
+function custom_array(){
+    //1,取参数
+    $args = func_get_args();
+    //2,根据参数来决定数组元素怎么放
+    $arr = null;
+    foreach ($args as $arg) {
+        //如果参数遵循关联数组的原则(a:b)
+        if (strlen(stristr($arg, ':'))) {
+            //获取key
+            $key = stristr($arg,':',true);
+            $value = ltrim(stristr($arg,':'), ':');
+            $arr[$key] = $value;
         }else {
-            $arr[$key] = func_get_arg($i);
+            $arr[]=$arg;
         }
     }
     return $arr;
 }
 
 echo '<hr>';
-$arr = custom_array('a','b','c','e','f','g');
+$arr = custom_array('a','b:hello','c:php','e','f','g');
 var_dump($arr);
 //关联数组
