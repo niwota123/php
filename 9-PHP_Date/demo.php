@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-08-02 15:24:48
  * @Last Modified by:   superking
- * @Last Modified time: 2017-08-02 16:49:32
+ * @Last Modified time: 2017-08-02 18:00:27
  */
 //计算月demo
 
@@ -54,7 +54,7 @@ function posttime($sTime,$eTime){
     }
 
     if (date('y',strtotime($sTime)) != date('y',strtotime($eTime))) {
-        return date('c',$sTime);
+        return date('c',strtotime($sTime));
     }
 
     $days = days($sTime,$eTime);
@@ -75,4 +75,4 @@ function posttime($sTime,$eTime){
     }
 }
 echo '<hr>';
-echo posttime('20170101','20170802');
+echo posttime('20150101','20170802');
