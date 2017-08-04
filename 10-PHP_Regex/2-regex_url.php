@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-08-03 17:28:06
  * @Last Modified by:   superking
- * @Last Modified time: 2017-08-03 17:48:05
+ * @Last Modified time: 2017-08-03 20:43:50
  */
 //简单的抓取url
 
@@ -23,6 +23,3 @@ if ($res) {
         file_put_contents('url.txt', $value, FILE_APPEND);
    }
 }
-
-
-
