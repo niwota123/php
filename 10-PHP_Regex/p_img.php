@@ -30,7 +30,6 @@ for ($pageno = 1 ; $pageno < 22; $pageno ++) {
 
 
     ob_flush();
-    //sleep(1);
 }
 
 
