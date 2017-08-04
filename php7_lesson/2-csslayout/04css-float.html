@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>float</title>
+        <style>
+
+            section{
+                border: 1px cyan solid;
+                /* height:100px; */
+
+                /* 溢出元素的处理 hidden:会剪切; auto:自动; scroll:添加滚动条; */
+                overflow:auto;
+
+                /*
+                 clear:
+                left清除左边浮动元素
+                right清除右边浮动元素
+                both清除左右两边的浮动元素;
+                 */
+
+                /* clear: both; */
+            }
+
+            .box{
+                 float:left;/*智游 左右*/
+                border: 1px yellow solid;
+                width: 200px;
+                height: 100px;
+                overflow: auto;
+            }
+
+            ul.aaa{
+                float:left;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="box">
+        我感觉,我在漂浮!
+    </div>
+    <!-- <img class="box" src="http://zh.learnlayout.com/images/logo.png" alt="" /> -->
+
+    <section>
+        在这个例子中， section 元素实际上是在 div 之后的（译注：DOM结构上）。然而 div 元素是浮动到左边的，于是 section 中的文字就围绕了 div ，并且 section 元素包围了整个元素。如果我们想让 section 显示在浮动元素之后呢？
+        <img class="box" src="http://zh.learnlayout.com/images/logo.png" alt="" />
+    </section>
+
+
+<!--     <ul class="aaa" style="clear:left;">
+        <li >mulu1</li>
+        <li >mulu2</li>
+        <li>mulu3</li>
+        <li>mulu4</li>
+        <li>mulu5</li>
+    </ul>
+
+    <ul>
+        <li>aa1</li>
+        <li>aa2</li>
+        <li>aa3</li>
+    </ul> -->
+    </body>
+</html>
