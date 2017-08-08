@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-08-07 16:31:07
  * @Last Modified by:   superking
- * @Last Modified time: 2017-08-07 17:56:24
+ * @Last Modified time: 2017-08-08 09:41:00
  */
 // 文件的读写
 //读
@@ -87,3 +87,11 @@ fclose($fr);
 
 // 晚上作业
 // 写一个代码检测工具,检测出有效代码行数和注释代码的行数
+/*ddddd*/
+/*
+
+aa
+bb
+cc
+
+ */
