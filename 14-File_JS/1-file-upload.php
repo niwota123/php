@@ -3,7 +3,7 @@
  * @Author: superking
  * @Date:   2017-08-09 09:57:03
  * @Last Modified by:   superking
- * @Last Modified time: 2017-08-09 11:46:08
+ * @Last Modified time: 2017-08-09 15:33:06
  */
 // 文件的上传
 //1,单文件上传
@@ -37,7 +37,7 @@ post_max_size = 20M;
 
 // var_dump($_POST);
 // echo '<hr>';
- var_dump($_FILES);
+ // var_dump($_FILES);
 
 //is_uploaded_file 检测是否是上传文件
 //move_uploaded_file 移动上传文件
@@ -65,7 +65,32 @@ Note:
 
 
 if (isset($_FILES['pic'])) {
-    $file_info = $_FILES['pic'];
+    $info = $_FILES['pic'];
+
+    //name-type-tmp_name-size-error
+    $arrs = array();
+    foreach ($info as $key => $value) {
+        //key : name-type-tmp_name-size-error
+        //value:array(3个值)
+       if (is_array($value)) {
+            $i = 0;
+           foreach ($value as $att_key => $att_value) {
+            //att_key :0 -1 -2
+            //att_value:
+               $arrs[$i][$key]=$att_value;
+               $i++;
+           }
+       }
+    }
+
+    foreach ($arrs as  $file_info) {
+        verify_upload($file_info);
+    }
+}
+
+
+//验证上传信息
+function verify_upload ($file_info){
 
     //error=0 没有错误
     if ($file_info['error']>0) {
@@ -100,7 +125,7 @@ if (isset($_FILES['pic'])) {
                 echo '未知错误';
                 break;
         }
-        exit;
+        return;
     }
 
     //大小限制
@@ -108,7 +133,7 @@ if (isset($_FILES['pic'])) {
     $max_size = 5000000;
     if ($file_size>$max_size) {
         echo '文件超过最大限制';
-        exit;
+        return;
     }
 
     //类型限制
@@ -120,7 +145,7 @@ if (isset($_FILES['pic'])) {
     $mimeTypes = ['png','jpeg','gif','jpg'];
     if (!in_array($file_type, $mimeTypes)) {
         echo '类型不对';
-        exit;
+        return;
     }
 
     //处理上传文件
@@ -134,7 +159,7 @@ if (isset($_FILES['pic'])) {
     $file_path = $upload_dir.DIRECTORY_SEPARATOR.$file_name;
 
     //处理文件
-    $tmp_path = $_FILES['pic']['tmp_name'];
+    $tmp_path =$file_info['tmp_name'];
     //临时文件,会在PHP代码执行完毕后自动清除
     if (is_uploaded_file($tmp_path)) {
 
@@ -147,4 +172,3 @@ if (isset($_FILES['pic'])) {
         echo '这不是一个上传的文件';
     }
 }
-
