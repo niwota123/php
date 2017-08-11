@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>事件的监听</title>
+    </head>
+    <body>
+    <p></p>
+    <button id="btn">点击</button>
+    <script>
+        //事件的监听
+        //给元素添加事件的监听,事件只要触发,就会自动调用监听的方法
+        //例:监听 window对象的resize事件(resize事件,屏幕改变了宽高,就会触发)
+        //实时的获得屏幕的大小
+        window.addEventListener('resize', function () {
+            var h = window.innerHeight;
+            var w = window.innerWidth;
+            //console.log('屏幕的宽'+w+'屏幕的高'+h);
+            document.getElementsByTagName('p')[0].innerHTML='屏幕的宽'+w+'屏幕的高'+h;
+        });
+
+        //监听点击事件-统计点击次数
+        var i = 0;
+        document.getElementById('btn').addEventListener('click', function () {
+                i++;
+                this.innerHTML = '点击的次数'+i;
+        });
+    </script>
+    </body>
+</html>
