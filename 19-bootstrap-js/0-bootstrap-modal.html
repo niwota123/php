@@ -97,8 +97,43 @@
           </div>
         </div>
 
+        <!-- 按钮 -->
+        <button class="btn btn-default" data-toggle='modal' data-target='#c_id' data-whatever='user'>传值按钮</button>
+        <!-- 弹框 -->
+        <div class="modal fade" id="c_id">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">弹框</div>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                用户名
+                                <input type="text"  class="form-control" id="c_input" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss='modal'>确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <script>
+    $('#c_id').on('show.bs.modal',function (event) {
+       //获得button的数据
+       var button = $(event.relatedTarget);
+       var data = button.data('whatever');
+
+       //将button 的数据填充到input中
+       $('#c_input').val(data);
+    });
+
+
+
 
         $('#exampleModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) //事件触发者

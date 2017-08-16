@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>tab</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <script src = 'js/jquery-3.2.1.min.js'></script>
+        <script src = 'js/bootstrap.min.js'></script>
+    </head>
+    <body>
+        <div>
+
+          <!-- Nav tabs nav-pills -->
+          <ul class="nav nav-pills" role="tablist">
+            <li role="presentation" ><a href="#home" aria-controls="home" role="tab" data-toggle="">Home</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="">Profile</a></li>
+            <li role="presentation" class="active"><a href="#messages" aria-controls="messages" role="tab" data-toggle="">Messages</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <!-- fade:tab切换的动画 -->
+          <!-- active:默认计划的tab -->
+          <!-- tab内容需要包含在 tab-content 容器中 -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="home">
+                我是home
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                我是profile
+            </div>
+            <div role="tabpanel" class="tab-pane active" id="messages">
+                我是message
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+                我是setting
+            </div>
+          </div>
+
+        </div>
+
+        <script>
+            //使用a标签,调用tab('show')方法,切换tab
+            $('.nav a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            })
+
+            $('a').on('shown.bs.tab', function (e) {
+              console.log(e.target) ; // newly activated tab
+              console.log(e.relatedTarget);// previous active tab
+            })
+        </script>
+    </body>
+</html>
