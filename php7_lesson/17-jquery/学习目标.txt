@@ -1,6 +1,0 @@
-1,什么是jquery
-2,jquery语法
-3,jquery怎么查文档
-4,jquery选择器-熟练
-5,jquery事件-熟练
-6,jquery-ajax-精通
