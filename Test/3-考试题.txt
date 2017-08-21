@@ -1,0 +1,72 @@
+考试
+1,相对路径和绝对路径
+-解释说明什么是相对路径,什么是绝对路径.
+-. 和 .. 分别代表什么
+
+2,完整的文件权限
+-一个文件的最高权限如何表示.
+-表示权限的数字有哪些,分别表示什么权限
+-拥有者读写执行,所在组读执行,其他执行文件权限的数字表示法
+
+4,读取文件
+写出你所学过的读取文件的方法
+
+
+5,写入文件
+写出你所学过的写入文件的方法
+
+7,文件锁
+-文件的锁都包含哪几种锁,分别如何使用
+
+8.文件夹操作
+-写出文件夹copy的具体实现
+
+9,文件上传
+-如何上传多个文件
+
+10,文件下载
+-解释说明下面每行代码的作用
+header("content-type:application/octet-stream");
+header("accept-ranges:bytes");
+header("accept-length:{$filesize}");
+header("content-disposition:attachment;filename={$filename}");
+11,js dom操作
+    -使用js 给<h1 class = 'j'>标题</h1>标签添加点击事件,并修改内容为'new title'
+    -写出js输出的三种方式
+
+12,js实现页面跳转到百度
+
+13,js event事件
+
+14,jquery的文档操作
+-写出你对jquery的理解
+-使用jquery实现,点击 id为hh 的h1标签,修改h1的内容,并将p标签隐藏,p标签隐藏之后,弹出alert提示框的连贯操作.
+
+
+15,jquery的事件操作
+html文档body中包含4个button 和4个div,使用jquery实现tap切换效果
+
+16,js代码调试方式
+
+17,js作用域
+js变量的作用域,解释什么是局部变量,什么是全局变量,并说明区别
+
+18,bootstrap 栅格系统
+写出,栅格系统的类的前缀,并说明分别表示那种大小的屏幕
+
+19,boostrap组件
+解释说明下列单词分别代表哪一种bootstrap的js插件
+
+modal,dropdown,spy,tooltip,popover,collapse,carousel;
+
+写出 bootstrap modal插件所包含的4种事件的名称.
+
+
+20,数据库关键字
+如何查看数据库?
+如何查看数据库中有哪些表?
+表的重命名
+创建一个包含4中数据类型的表
+修改表的字段
+修改表字段的位置
+删除表
