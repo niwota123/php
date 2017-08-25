@@ -2,8 +2,8 @@
 /**
  * @Author: superking
  * @Date:   2017-08-23 10:17:09
- * @Last Modified by:   superking
- * @Last Modified time: 2017-08-23 10:29:32
+ * @Last Modified by:   guolei
+ * @Last Modified time: 2017-08-25 15:38:58
  */
 //事务
 //事务的四大特性
@@ -25,7 +25,7 @@
 // rollback();
 
 
-// 实际的例子:看菜鸟教程PDO多条插入
+// 实际的例子:glyphicon glyphicon-trash
 $servername = "localhost";
 $username = "root";
 $password = "123456";
