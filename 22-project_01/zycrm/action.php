@@ -34,7 +34,7 @@ function customer_info(){
         $total_count = $numbers[0]['count'];
 
         //每页的个数
-        $page_limit = 5;
+        $page_limit = 2 ;
 
         //分页配置-动作+总数+每页数+当前页
         extract(page_option("customer_info",$total_count,$page_limit,$page));
@@ -101,7 +101,9 @@ function customer_info(){
                         //获得个人数据
                         $id = $_GET['id'];
                         $info_data = db_query("SELECT * FROM customer_info WHERE customer_id=$id");
+
                         $info_data = $info_data[0];
+
                         $is_edit = true;
 
                         //获得客户来源

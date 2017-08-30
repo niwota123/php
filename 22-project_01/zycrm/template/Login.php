@@ -22,7 +22,7 @@
         <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password" required>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me">保持登陆状态
+                <input type="checkbox" value="remember-me" name="autologin">保持登陆状态
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
@@ -32,13 +32,3 @@
 
 </body>
 </html>
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/8/24
- * Time: 14:49
- */
-
-var_dump($_POST);
-?>
