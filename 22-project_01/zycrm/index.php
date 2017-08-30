@@ -32,6 +32,11 @@ if (isset($_POST['email'])) {
                 setcookie('timestamp',$timestamp,time()+3600*24*7);
             }
 
+            //将用户名和用户id保存到session中
+            session_start();
+            $_SESSION['user_id']= $res[0]['user_id'];
+            $_SESSION['user_name']=$res[0]['user_name'];
+
             jump('登录成功,正在跳转...','/template/Home.php');
         }else{
             echo "<script>alert('密码或邮箱不正确!')</script>";
@@ -50,7 +55,7 @@ if (isset($_POST['email'])) {
         $timestamp = $_COOKIE['timestamp'];
         $user_id = $_COOKIE['user_id'];
 
-        $sql = "SELECT user_email,user_pw FROM user_info WHERE user_id={$user_id}";
+        $sql = "SELECT user_email,user_pw,user_id,user_name FROM user_info WHERE user_id={$user_id}";
         $res = db_query($sql);
         if ($res) {
             $email = $res[0]['user_email'];
@@ -58,6 +63,11 @@ if (isset($_POST['email'])) {
 
             $sql_str = $email.$pwd.$timestamp;
             if ($cookie_code == md5($sql_str)) {
+
+                session_start();
+                $_SESSION['user_id']= $res[0]['user_id'];
+                $_SESSION['user_name']=$res[0]['user_name'];
+
                 jump('自动登录成功,正在跳转...','/template/Home.php');
             }
         }

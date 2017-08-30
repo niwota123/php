@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("refresh:1;url=/index.php");
+    exit('非法操作...');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,11 +35,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">用户名 <b class="caret"></b></a>
+                <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $_SESSION['user_name']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人信息设置</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">安全退出</a></li>
+                        <li><a href="/action.php?act=login_out">安全退出</a></li>
                     </ul>
                 </li>
 

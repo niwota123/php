@@ -196,3 +196,15 @@ function notic(){
 }
 
 
+function login_out(){
+    // 清空cookie,并退出登录
+    setcookie('code','a',time()-1);
+    setcookie('user_id','a',time()-1);
+    setcookie('timestamp','a',time()-1);
+    //销毁session
+    session_start();
+    session_destroy();
+
+    jump('安全退出中...','index.php');
+
+}
