@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        body{
+            /*外边距*/
+            margin: 0px;
+            /*内间距*/
+            padding: 0px;
+            /*文本居中*/
+            text-align: center;
+            background-image: url("./static/abc.jpg");
+        }
+        div{
+            padding-top: 20px;
+            /*第一个值上下 第二个值左右*/
+            margin: 100px auto;
+            width: 300px;
+            height: 240px;
+            background-color: powderblue;
+            opacity: 0.7;
+        }
+        table{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>登录</h3>
+
+<!--action 数据提交的方向 method 数据提交的方式-->
+        <form action="admin.php?action=login" method="POST">
+                <table>
+                    <tr>
+                        <td>用户名</td>
+                        <td><input type="text" name="user"></td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td><input type="password" name="pwd"></td>
+                    </tr>
+                </table>
+                <!--登录按钮-->
+                <p><input type="submit" value="登录"></p>
+        </form>
+        <a href="admin.php?action=register"><button>注册</button></a>
+    </div>
+</body>
+</html>

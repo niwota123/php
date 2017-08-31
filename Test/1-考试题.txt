@@ -1,0 +1,110 @@
+考试题
+
+-PHP基础
+-PHP字符串函数
+-PHP数组函数
+-PHP正则
+-PHP时间
+
+选择题 10 (2*10) 20
+1,正确初始化数组的是
+ a.$a = array(); b.$a= []; c.$a[]=''; d-.全都是
+2,从数组中删除一个元素的正确方式是
+ a,$a[0] = null; b,$a[0] = ''; c-,unset($a[0]) d,全都是
+3,在字符串变量 $str 中查找 hello 字符串，查找到了输出ok，请问下面哪个表达式是正确的？
+A-、if (strpos($str, 'hello') !== false) echo 'ok';
+B、if (strpos($str, 'hello') != -1) echo 'ok';
+C、if (strpos($str, 'hello')) echo 'ok'
+D、if (strpos($str, 'hello') != 0) echo 'ok';
+4,如何实现字符串翻转？
+A、sort（ ）
+B、ksort（ ）
+C-、strrev（ ）
+D、arsort（ ）
+5,使用一下哪个函数可以返回的是指定位置的参数的值：
+A、function_exists
+B-、func_get_arg
+C、func_get_args
+D、func_num_args
+6,下面那个函数可以将字符串转换成时间戳
+a,date()
+b,mktime()
+c,getdate()
+d-,strtotime()
+7,舍去小数取整的函数是
+a-,round()
+b,floor()
+c,ceil()
+d,rand()
+8,以下正则元字符匹配数字的是
+a,\d
+b,\w
+c,\S
+d-,以上都是
+9,以下正则限定符,限定一个或没有的是
+a,*
+b,+
+c-,?
+d,以上都是
+10,$subStr = substr("abcdef", 4); $subStr的值是
+a,d
+b,e
+c-,ef
+d,f
+
+
+填空题 10 (2*10) 20
+1,舍去小数取整函数是_____
+2,幂运算的函数是_____
+3,创建关联数组用_____链接key和value
+4,获得2017-08-09 18:09:01 字符串,时间格式化字符是_____________
+5,过滤空格的字符串函数是_____
+6,htmlentities()函数可以将特殊字符转换成_______
+7,声明函数的关键字是_____
+8,使用___关键字声明静态变量
+9,静态变量的特点是________
+0,正则表达式的结束限制符号是_____
+判断题 10 (2*10) 20
+1,索引数组也是关联数组?
+2-,PHP中的函数不区分大小写。
+3,全局变量可以直接在文件的全局使用
+4,PHP函数可以被重写
+5,time()可以获得毫秒数
+6,preg_match()可以获得正则匹配的全部结果
+7,md5()加密的字符串,有相应的函数解密
+8,-数组运算符+只能融合key不同的数组
+9,-PHP函数的参数的数量可变
+0,-rand()%100可以获得0-100内的随机数
+简答题 10 (4*10) 40
+1,声明一个函数,包含两个参数,其中一个参数是可选的.
+2,请写一个函数, 求出1 + 2 + 3 … $n的和
+3,使用3种方式获取一个文件的扩展名
+要求：pic/user110.jpg，找出 .jpg 或者 jpg ，必须使用PHP自带的处理函数进行处理，方法不能明显重复
+4,<startData>=1999-5-27 使用preg_replace函数替换成 startData=27/5/1999
+5,$a = ['a','b','c','1','2','3'];筛选出数组中的字母
+6,获取当前unix时间的函数，(分别精确到秒和毫秒)
+7,如何比较 2016-09-01 11:12:23 和2016-08-12 10:00:01的大小
+8,使用正则替换的方式实现
+18588888989 原内容
+185***989   替换后内容
+9,<style>
+            body{
+                margin: 0;
+                padding: 0;
+                border: solid red 2px;
+                width: 1060px;
+                height: 638px;
+                background-color: red;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size:contain;
+            }
+        </style>
+想办法将css代码中属性和值放入数组,属性名为key 属性值为value
+
+0,写出如下程序的输出结果
+$s = ['1','a','2','b','3','A','B','4'];
+$rexgex= ['#\d#','#[a-z]#','#[1a]#'];
+$replace = ['A:$0','B:$0','C:$0'];
+$rs = preg_replace($rexgex,$replace,$s);
+var_dump($rs);
