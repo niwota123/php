@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 if (!isset($_SESSION['user_id'])) {
     header("refresh:1;url=/index.php");
     exit('非法操作...');

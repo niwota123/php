@@ -168,7 +168,146 @@ function customer_allot(){
 }
 //关心
 function customer_care(){
-    include_once __DIR__.DIRECTORY_SEPARATOR.TMP.'Customer_care.php';
+
+    if (!isset($_GET['step'])) {
+        //单纯的页面展示
+        //分页功能-根据数据库的数据做分页功能
+        //总条数
+        $res = db_query("SELECT count(care_id) as count FROM customer_care WHERE is_used=1");
+        $total_count = $res[0]['count'];
+
+        //每页条数
+        $page_limit = 3;
+
+        //当前的页数
+        $page = @intval($_GET['page'])?:1;
+
+        //将数组中的元素之间写入到参数表中
+        extract(page_option("customer_care",$total_count,$page_limit,$page));
+
+        //显示数据-数据库获取数据
+        $sql = "select care_id,customer_name,care_theme,care_way,care_time,care_nexttime,care_remark,care_people from customer_care INNER JOIN customer_info on customer_care.customer_id = customer_info.customer_id WHERE customer_care.is_used=1 ORDER BY customer_care.care_id DESC LIMIT {$begin_num},{$page_limit}";
+
+        $care_data = db_query($sql);
+
+        include_once __DIR__.DIRECTORY_SEPARATOR.TMP.'Customer_care.php';
+    }else{
+        //功能操作
+        $step = $_GET['step'];
+        switch ($step) {
+            case 'add':
+
+                if (!isset($_POST['submit'])) {
+                    //进入添加关怀界面
+                    $is_edit = false;
+
+                    //从session中获得user_id
+                    session_start();
+                    $user_id = $_SESSION['user_id'];
+
+                    //关怀对象
+                    $care_obj_data = db_query("SELECT customer_id as id,customer_name as name FROM customer_info WHERE is_used=1 AND user_id={$user_id}");
+
+                    //关怀方式
+                    $care_way_data = array('上门拜访','发短信','送礼品卡','打电话问候','请客吃饭','一起开黑');
+
+                    //加载模板
+                    include_once __DIR__.DIRECTORY_SEPARATOR.TMP.'Customer_care_detail.php';
+
+                }else{
+
+                    $keys = $values = null;
+                    //使用循环拼接sql语句
+                    foreach ($_POST as $key => $value) {
+                        if ($key=='submit') continue;
+
+                        $keys .= $key.',';
+                        $values .= "'{$value}',";
+                    }
+                    $keys = rtrim($keys,',');
+                    $values = rtrim($values,',');
+
+                    //关怀人
+                    //从session中获得user_id
+                    session_start();
+                    $user_name = $_SESSION['user_name'];
+
+                    $sql = "INSERT INTO customer_care ({$keys},care_time,care_people) VALUE ({$values},NOW(),'{$user_name}')";
+                    //执行sql语句
+                    if (db_exec($sql)) {
+                        jump('插入成功,1秒后自动跳转...','action.php?act=customer_care');
+                    }else{
+                        error_option('action.php?act=customer_care&step=add');
+                    }
+                }
+
+
+                break;
+            case 'edit':
+
+                if (!isset($_POST['submit'])) {
+                    //显示编辑页面
+                    $id = $_GET['id'];
+
+                    //根据id获得单条数据
+                    $care_info_data = db_query("SELECT * FROM customer_care WHERE care_id={$id}")[0];
+
+                    //进入添加关怀界面
+                    $is_edit = true;
+
+                    //从session中获得user_id
+                    session_start();
+                    $user_id = $_SESSION['user_id'];
+
+                    //关怀对象
+                    $care_obj_data = db_query("SELECT customer_id as id,customer_name as name FROM customer_info WHERE is_used=1 AND user_id={$user_id}");
+
+                    //关怀方式
+                    $care_way_data = array('上门拜访','发短信','送礼品卡','打电话问候','请客吃饭','一起开黑');
+
+                    //加载模板
+                    include_once __DIR__.DIRECTORY_SEPARATOR.TMP.'Customer_care_detail.php';
+
+                }else{
+                    //编辑提交
+                    $keys = $values = null;
+                    //使用循环拼接sql语句
+                    $update_sql = null;
+                    foreach ($_POST as $key => $value) {
+                        if ($key=='submit') continue;
+
+                        $update_sql .= "{$key}='{$value}',";
+                    }
+                    $update_sql = rtrim($update_sql,',');
+
+                    $id = $_POST['care_id'];
+
+                    $sql = "UPDATE customer_care SET {$update_sql},care_time=NOW() WHERE care_id={$id}";
+                    //执行sql语句
+                    if (db_exec($sql)) {
+                        jump('更新成功,1秒后自动跳转...','action.php?act=customer_care');
+                    }else{
+                        error_option("action.php?act=customer_care&step=edit&id={$id}");
+                    }
+
+                }
+                break;
+            case 'del':
+
+                $id = $_GET['id'];
+                if (db_exec("UPDATE customer_care SET is_used=0 WHERE care_id={$id}")) {
+                        jump('删除成功,1秒后自动跳转...','action.php?act=customer_care');
+                }else{
+                        error_option("action.php?act=customer_care");
+                }
+
+                break;
+
+            default:
+
+                break;
+        }
+    }
 }
 //类型
 function customer_type(){
