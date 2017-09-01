@@ -58,15 +58,20 @@ if (!isset($_SESSION['user_id'])) {
                 <li class=""><a href="/action.php?act=home">主面板 </a></li>
                 <li class="text-center" style="color:black ;font-size: 15px"> <strong>客户相关</strong></li>
                 <li ><a href="/action.php?act=customer_info">客户信息 </a></li>
+                <?php if ($_SESSION['role_id']=='1'):?>
                 <li ><a href="/action.php?act=customer_allot">客户分配</a></li>
+                <?php endif;?>
+
                 <li ><a href="/action.php?act=customer_care">客户关怀</a></li>
                 <li ><a href="/action.php?act=customer_type">客户类型</a></li>
                 <li ><a href="/action.php?act=customer_status">客户状态</a></li>
                 <li ><a href="/action.php?act=customer_source">客户来源</a></li>
                 <li ><a href="/action.php?act=customer_linkrecord">联系记录</a></li>
+                <?php if ($_SESSION['role_id']=='1'):?>
                 <li class="text-center" style="color:black ;font-size: 15px"> <strong>员工相关</strong></li>
                 <li ><a href="/action.php?act=user_info">员工信息</a></li>
                 <li ><a href="/action.php?act=notic">公共信息</a></li>
+                <?php endif;?>
             </ul>
 
         </div>

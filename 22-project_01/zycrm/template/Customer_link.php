@@ -1,6 +1,11 @@
 <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_header.php'?>
     <div class="panel panel-default">
-        <div class="panel-heading"><h2>联系信息</h2></div>
+        <div class="panel-heading">
+            <div class = 'row'>
+                <h2 class="col-sm-2">联系信息</h2>
+                <a class="btn btn-info col-sm-offset-9" href="/action.php?act=customer_linkrecord&step=add">添加</a>
+            </div>
+        </div>
         <div class="panel-body">
             <!-- Table -->
             <table class="table table-hover table-bordered">
@@ -17,31 +22,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
+                <?php foreach ($link_data as $item):?>
+                    <tr>
+                        <?php foreach ($item as $value):?>
+                            <td><?php echo $value; ?></td>
+                        <?php endforeach; ?>
+                        <td>
+                            <a href="action.php?act=customer_linkrecord&step=del&id=<?php echo $item['record_id'];?>">删除</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
 
                 </tbody>
             </table>
         </div><!--                body-->
-        <div class="panel-footer">
+        <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_page.php'?>
 
-            共有2条记录，当前第1/1页
-
-            <ul class="pager">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">上一页</a></li>
-                <li><a href="#">下一页</a></li>
-                <li><a href="#">尾页</a></li>
-            </ul>
-        </div>
 
     </div>
 <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_footer.php'?>

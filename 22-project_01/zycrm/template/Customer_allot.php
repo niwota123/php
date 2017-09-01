@@ -17,32 +17,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-
-            </tr>
+            <?php foreach ($allot_data as $item):?>
+                <tr>
+                    <?php foreach ($item as $key => $value):?>
+                        <?php if ($key=='id')continue; ?>
+                        <td><?php echo $value; ?></td>
+                    <?php endforeach; ?>
+                    <td>
+                        <a href="action.php?act=customer_allot&step=allot&id=<?php echo $item['id'];?>">分配</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
 
             </tbody>
         </table>
     </div><!--                body-->
-    <div class="panel-footer">
-
-        共有2条记录，当前第1/1页
-
-        <ul class="pager">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">上一页</a></li>
-            <li><a href="#">下一页</a></li>
-            <li><a href="#">尾页</a></li>
-        </ul>
-    </div>
+    <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_page.php'?>
 
 </div>
 <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_footer.php'?>
