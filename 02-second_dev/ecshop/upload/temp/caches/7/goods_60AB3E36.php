@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504755869;s:8:"maketime";i:1504755869;}<!DOCTYPE html>
+<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504756111;s:8:"maketime";i:1504756111;}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -65,8 +65,8 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="index.php">首页<span></span></a></li>
-                                <li><a href="category.php?id=3"   class="cur">GSM手机<span></span></a></li>
-                                <li><a href="category.php?id=5"  >双模手机<span></span></a></li>
+                                <li><a href="category.php?id=3"  >GSM手机<span></span></a></li>
+                                <li><a href="category.php?id=5"   class="cur">双模手机<span></span></a></li>
                                 <li><a href="category.php?id=6"  >手机配件<span></span></a></li>
                                 <li><a href="group_buy.php"  >团购商品<span></span></a></li>
                                 <li><a href="activity.php"  >优惠活动<span></span></a></li>
@@ -84,7 +84,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="breadcrumb">
-                    <li><a href=".">首页</a></li>  <li><a href="category.php?id=1">手机类型</a></li>  <li><a href="category.php?id=3">GSM手机</a></li><li>诺基亚E66                </ul>
+                    <li><a href=".">首页</a></li>  <li><a href="category.php?id=1">手机类型</a></li>  <li><a href="category.php?id=4">3G手机</a></li><li>KD876                </ul>
             </div>
         </div>
         <div class="row">
@@ -92,61 +92,51 @@
                 <div class="product">
                     <div class="col-md-6">
                         <div class="image">
-                                                        <a href="javascript:;" onclick="window.open('gallery.php?id=9'); return false;">
-                                <img src="images/200905/goods_img/9_G_1241511871574.jpg" alt="诺基亚E66"/>
+                                                        <a href="javascript:;" onclick="window.open('gallery.php?id=1'); return false;">
+                                <img src="images/200905/goods_img/1_G_1240902890755.jpg" alt="KD876"/>
                             </a>
                             
                             <div class="image-more">
                                 <ul class="row">
-                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=9&amp;img=14" target="_blank"><img  src="images/200905/thumb_img/9_thumb_P_1241511871787.jpg" alt="诺基亚E66" class="B_blue img-responsive" /></a>
+                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=1&amp;img=1" target="_blank"><img  src="images/200905/thumb_img/1_thumb_P_1240902890139.jpg" alt="KD876" class="B_blue img-responsive" /></a>
+                                    </li>
+                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=1&amp;img=2" target="_blank"><img  src="images/200905/thumb_img/1_thumb_P_1240904370846.jpg" alt="KD876" class="B_blue img-responsive" /></a>
+                                    </li>
+                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=1&amp;img=3" target="_blank"><img  src="images/200905/thumb_img/1_thumb_P_1240904371539.jpg" alt="KD876" class="B_blue img-responsive" /></a>
+                                    </li>
+                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=1&amp;img=4" target="_blank"><img  src="images/200905/thumb_img/1_thumb_P_1240904371335.jpg" alt="KD876" class="B_blue img-responsive" /></a>
+                                    </li>
+                                                                        <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id=1&amp;img=5" target="_blank"><img  src="images/200905/thumb_img/1_thumb_P_1240904371430.jpg" alt="KD876" class="B_blue img-responsive" /></a>
                                     </li>
                                                                     </ul>
                             </div>
                         </div>
                     </div>
-                    <form action="javascript:addToCart(9)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+                    <form action="javascript:addToCart(1)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
                         <div class="col-md-6">
                             <div class="caption">
-                                <div class="name"><h3>诺基亚E66</h3></div>
+                                <div class="name"><h3>KD876</h3></div>
                                 <div class="info">
                                     <ul>
-                                        <li>商品品牌：诺基亚</li>
-                                        <li>商品货号：ECS000009</li>
-                                                                                                                        <li>商品库存：4 台</li>
+                                        <li>商品品牌：LG</li>
+                                        <li>商品货号：ECS000000</li>
+                                                                                                                        <li>商品库存：1 </li>
                                                                                                                     </ul>
                                 </div>
-                                <div class="price">2298.00<span>￥2758元</span></div>
+                                <div class="price">1388.00<span>￥1666元</span></div>
                                 
                                                                 <strong>颜色:</strong><br />
                                 
-                                                                                                                                <label for="spec_value_227">
-                                    <input type="radio" name="spec_185" value="227" id="spec_value_227" checked onclick="changePrice()" />
-                                    白色 [ ￥0.00元] </label><br />
-                                                                <label for="spec_value_226">
-                                    <input type="radio" name="spec_185" value="226" id="spec_value_226"  onclick="changePrice()" />
-                                    黑色 [加 ￥10.00元] </label><br />
-                                                                <label for="spec_value_243">
-                                    <input type="radio" name="spec_185" value="243" id="spec_value_243"  onclick="changePrice()" />
-                                    金色 [加 ￥80.00元] </label><br />
-                                                                <input type="hidden" name="spec_list" value="2" />
-                                                                                                                                <strong>配件:</strong><br />
-                                
-                                                                                                <label for="spec_value_244">
-                                    <input type="checkbox" name="spec_210" value="244" id="spec_value_244" onclick="changePrice()" />
-                                    线控耳机 [加 ￥10.00元] </label><br />
-                                                                <label for="spec_value_242">
-                                    <input type="checkbox" name="spec_210" value="242" id="spec_value_242" onclick="changePrice()" />
-                                    数据线 [加 ￥20.00元] </label><br />
-                                                                <label for="spec_value_241">
-                                    <input type="checkbox" name="spec_210" value="241" id="spec_value_241" onclick="changePrice()" />
-                                    蓝牙耳机 [加 ￥99.00元] </label><br />
-                                                                <input type="hidden" name="spec_list" value="2" />
-                                                                                                
+                                                                                                                                <label for="spec_value_237">
+                                    <input type="radio" name="spec_185" value="237" id="spec_value_237" checked onclick="changePrice()" />
+                                    灰色 [ ￥0.00元] </label><br />
+                                                                <input type="hidden" name="spec_list" value="0" />
+                                                                                                                                
                                 <div class="well">
                                     <strong>商品总价：</strong>
                                     <span id="ECS_GOODS_AMOUNT" class="shop"></span>
                                 </div>
-                                <div class="well"><label>购买数量：</label> <input class="form-inline quantity" type="text" value="1" name="number" onblur="changePrice()"><a href="javascript:addToCart(9)" class="btn btn-2 ">加入购物车</a></div>
+                                <div class="well"><label>购买数量：</label> <input class="form-inline quantity" type="text" value="1" name="number" onblur="changePrice()"><a href="javascript:addToCart(1)" class="btn btn-2 ">加入购物车</a></div>
                                 <div class="share well">
                                     <strong style="margin-right: 13px;">Share :</strong>
                                     <a href="#" class="share-btn" target="_blank">
@@ -171,20 +161,32 @@
                     </ul>
                     <div class="tab-content">
                         <div id="description" class="tab-pane fade in active">
-                            <p>在机身材质方面，诺基亚E66大量采用金属材质，刨光的金属表面光泽动人，背面的点状效果规则却又不失变化，时尚感总是在不经意间诠释出来，并被人们所感知。E66机身尺寸为<span style="color: rgb(255, 0, 0);"><span style="font-size: larger;"><strong>107.5&times;49.5&times;13.6毫米，重量为121克</strong></span></span>，滑盖的造型竟然比E71还要轻一些。</p>
-<p>&nbsp;</p>
-<div>诺基亚E66机身正面是<span style="color: rgb(255, 0, 0);"><span style="font-size: larger;"><strong>一块2.4英寸1600万色QVGA分辨率（240&times;320像素）液晶显示屏</strong></span></span>。屏幕上方拥有光线感应元件，能够自适应周 围环境光调节屏幕亮度；屏幕下方是方向功能键区。打开滑盖，可以看到传统的数字键盘，按键的大小、手感、间隔以及键程适中，手感非常舒适。</div>
-<div>&nbsp;</div>
-<div>诺基亚为E66配备了一颗320万像素自动对焦摄像头，带有LED 闪光灯，支持多种拍照尺寸选择。</div>
-<p>&nbsp;</p>                        </div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 很多朋友都已经抢先体验了3G网络的可视通话、高速上网等功能。LG KD876手机<span style="font-size: x-large;"><span style="color: rgb(255, 0, 0);"><strong>支持TD-SCDMA/GSM双模单待</strong></span></span>，便于测试初期GSM网络和TD网络之间的切换和共享。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LG KD876手机整体采用银色塑料材质，<strong><span style="font-size: x-large;"><span style="color: rgb(255, 0, 0);">特殊的旋转屏设计是本机的亮点</span></span></strong>，而机身背部的300万像素摄像头也是首发的六款TD-SCDMA手机中配置最高的。LG KD876手机屏幕下方设置有外键盘，该键盘由左/右软键、通话/挂机键、返回键、五维摇杆组成，摇杆灵敏度很高，定位准确。KD876的内键盘由标准12个电话键和三个功能键、一个内置摄像头组成。三个功能键分别为视频通话、MP3、和菜单键，所有按键的手感都比较一般，键程适中，当由于按键排列过于紧密，快速发短信时很容易误按，用户在使用时一定要多加注意。LG KD876手机机身周边的接口设计非常简洁，手机的厚度主要来自屏幕旋转轴的长度，如果舍弃旋屏设计的话，估计<span style="font-size: x-large;"><strong><span style="color: rgb(255, 0, 0);">厚度可以做到10mm以下</span></strong></span>。</p>                        </div>
                         <div id="review" class="tab-pane fade">
                             <table class="table table-bordered" bgcolor="#dddddd">
                                                                 <tr>
                                     <th colspan="2" bgcolor="#FFFFFF">商品属性</th>
                                 </tr>
                                                                 <tr>
-                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[外观样式]</td>
-                                    <td bgcolor="#FFFFFF" align="left" width="70%">滑盖</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[上市日期]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">2008年04月</td>
+                                </tr>
+                                                                <tr>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[屏幕大小]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">2.4英寸</td>
+                                </tr>
+                                                                <tr>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[中文输入法]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">支持</td>
+                                </tr>
+                                                                <tr>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[情景模式]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">支持</td>
+                                </tr>
+                                                                <tr>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[手机制式]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">GSM,850,900,1800,1900</td>
                                 </tr>
                                                                                             </table>
                         </div>
@@ -195,28 +197,10 @@
                     <div class="products">
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
                             <div class="product">
-                                <div class="image"><a href="goods.php?id=24"><img src="images/200905/goods_img/24_G_1241971981284.jpg" alt="P806"  class="goodsimg" /></a></div>
+                                <div class="image"><a href="goods.php?id=12"><img src="images/200905/goods_img/12_G_1241965978209.jpg" alt="摩托罗拉A810"  class="goodsimg" /></a></div>
                                 <div class="caption">
-                                    <div class="name"><h3><a href="goods.php?id=24" title="P806">P806</a></h3></div>
-                                    <div class="price">￥2000元<span></span></div>
-                                </div>
-                            </div>
-                        </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="product">
-                                <div class="image"><a href="goods.php?id=14"><img src="images/200905/goods_img/14_G_1241968492932.jpg" alt="诺基亚5800XM"  class="goodsimg" /></a></div>
-                                <div class="caption">
-                                    <div class="name"><h3><a href="goods.php?id=14" title="诺基亚5800XM">诺基亚5800...</a></h3></div>
-                                    <div class="price">￥2625元<span></span></div>
-                                </div>
-                            </div>
-                        </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                            <div class="product">
-                                <div class="image"><a href="goods.php?id=22"><img src="images/200905/goods_img/22_G_1241971076358.jpg" alt="多普达Touch HD"  class="goodsimg" /></a></div>
-                                <div class="caption">
-                                    <div class="name"><h3><a href="goods.php?id=22" title="多普达Touch HD">多普达Touc...</a></h3></div>
-                                    <div class="price">￥5999元<span></span></div>
+                                    <div class="name"><h3><a href="goods.php?id=12" title="摩托罗拉A810">摩托罗拉A81...</a></h3></div>
+                                    <div class="price">￥983元<span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +298,7 @@
     </div>
 </div>
 <script>
-    var goodsId = 9;
+    var goodsId = 1;
     $(document).ready(function(){
         //计算商品总价格
         changePrice();

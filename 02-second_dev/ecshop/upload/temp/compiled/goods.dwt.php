@@ -121,8 +121,12 @@
                                 
 
 
+                                <div class="well">
+                                    <strong><?php echo $this->_var['lang']['amount']; ?>：</strong>
+                                    <span id="ECS_GOODS_AMOUNT" class="shop"></span>
+                                </div>
 
-                                <div class="well"><label><?php echo $this->_var['lang']['number']; ?>：</label> <input class="form-inline quantity" type="text" value="1" name="number"><a href="javascript:addToCart(<?php echo $this->_var['goods']['goods_id']; ?>)" class="btn btn-2 ">加入购物车</a></div>
+                                <div class="well"><label><?php echo $this->_var['lang']['number']; ?>：</label> <input class="form-inline quantity" type="text" value="1" name="number" onblur="changePrice()"><a href="javascript:addToCart(<?php echo $this->_var['goods']['goods_id']; ?>)" class="btn btn-2 ">加入购物车</a></div>
                                 <div class="share well">
                                     <strong style="margin-right: 13px;">Share :</strong>
                                     <a href="#" class="share-btn" target="_blank">
@@ -292,7 +296,13 @@
 </div>
 
 <script>
+
+    var goodsId = <?php echo $this->_var['goods_id']; ?>;
+
     $(document).ready(function(){
+        //计算商品总价格
+        changePrice();
+
         $(".nav-tabs a").click(function(){
             $(this).tab('show');
         });
@@ -303,6 +313,48 @@
             $(".prev span").text(y);
         });
     });
+    /**
+     * 点选可选属性或改变数量时修改商品价格的函数
+     */
+    function changePrice()
+    {
+        var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+        var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+
+        $.ajax({
+            url:'goods.php?act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty,
+            Type:'GET',
+            dataType:'JSON',
+            success:changePriceResponse
+        })
+
+
+//        Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+
+    }
+
+    /**
+     * 接收返回的信息
+     */
+    function changePriceResponse(res)
+    {
+        console.log(res);
+        if (res.err_msg.length > 0)
+        {
+            alert(res.err_msg);
+        }
+        else
+        {
+        console.log(res.qty);
+        console.log(res.result);
+
+            document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+            if (document.getElementById('ECS_GOODS_AMOUNT'))
+                document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+        }
+    }
+
 
     function addToCart(goodsId, parentId)
     {

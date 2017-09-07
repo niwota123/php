@@ -1,0 +1,28 @@
+
+xml
+解释
+可扩展标记语言
+它不是超文本标记语言的替代。
+它是对超文本标记语言的补充。
+
+数据交换格式
+
+例子:
+    <name>xiaom</name>
+    <age>20</age>
+    <info>
+        <num>001</num>
+    </info>
+
+
+json
+解释
+js里面的对象,轻量级的数据交换格式
+
+例子:
+{name:'xiaom',age:'20',info:[{num:'10',score:'100'},{num:'10',score:'100'}]}
+
+
+xml和json的区别
+1,从数据量,json轻量
+2,从解析,json便于解析
