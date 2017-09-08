@@ -16,8 +16,8 @@
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom Fonts -->
-    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="./fonts/font-slider.css" rel="stylesheet" type="text/css" />
+    <!--<link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="./fonts/font-slider.css" rel="stylesheet" type="text/css" />-->
 
     {insert_scripts files='jquery-2.1.1.js,bootstrap.min.js'}
 </head>
@@ -376,6 +376,8 @@
             data:json_data,
             success:addToCartResponse,
         });
+
+
     }
 
 
@@ -402,6 +404,7 @@
 
     function addToCartResponse(result)
     {
+        //alert(JSON.stringify(result));
         if (result.error > 0)
         {
             // 如果需要缺货登记，跳转

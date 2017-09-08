@@ -17,8 +17,8 @@
     <link href="themes/default_zy/css/style.css" rel="stylesheet" type="text/css" />
 
     
-    <link href="themes/default_zy/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="themes/default_zy/fonts/font-slider.css" rel="stylesheet" type="text/css" />
+    <!--<link href="themes/default_zy/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="themes/default_zy/fonts/font-slider.css" rel="stylesheet" type="text/css" />-->
 
     <?php echo $this->smarty_insert_scripts(array('files'=>'jquery-2.1.1.js,bootstrap.min.js')); ?>
 </head>
@@ -393,6 +393,8 @@
             data:json_data,
             success:addToCartResponse,
         });
+
+
     }
 
 
@@ -419,6 +421,7 @@
 
     function addToCartResponse(result)
     {
+        alert(JSON.stringify(result));
         if (result.error > 0)
         {
             // 如果需要缺货登记，跳转

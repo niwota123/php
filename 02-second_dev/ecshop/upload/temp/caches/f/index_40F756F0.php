@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/index.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504755903;s:8:"maketime";i:1504755903;}<!DOCTYPE html>
+<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/index.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504859161;s:8:"maketime";i:1504859161;}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />

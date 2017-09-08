@@ -1808,12 +1808,21 @@ elseif ($_REQUEST['step'] == 'done')
 
 elseif ($_REQUEST['step'] == 'update_cart')
 {
+    //1,插入操作
     if (isset($_POST['goods_number']) && is_array($_POST['goods_number']))
     {
         flow_update_cart($_POST['goods_number']);
     }
+    //2,查询操作
+    $cart_goods = get_cart_goods();
 
-    show_message($_LANG['update_cart_notice'], $_LANG['back_to_cart'], 'flow.php');
+    //3,将数据,以json的方式,返回给ajax
+    $data = ['shopping_money'=>sprintf($_LANG['shopping_money'], $cart_goods['total']['goods_price']),'market_price_desc'=>      sprintf($_LANG['than_market_price'],
+        $cart_goods['total']['market_price'], $cart_goods['total']['saving'], $cart_goods['total']['save_rate'])];
+
+    echo json_encode($data);
+
+    //show_message($_LANG['update_cart_notice'], $_LANG['back_to_cart'], 'flow.php');
     exit;
 }
 

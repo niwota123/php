@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504755869;s:8:"maketime";i:1504755869;}<!DOCTYPE html>
+<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504859164;s:8:"maketime";i:1504859164;}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -13,8 +13,8 @@
     
     <link href="themes/default_zy/css/style.css" rel="stylesheet" type="text/css" />
     
-    <link href="themes/default_zy/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="themes/default_zy/fonts/font-slider.css" rel="stylesheet" type="text/css" />
+    <!--<link href="themes/default_zy/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="themes/default_zy/fonts/font-slider.css" rel="stylesheet" type="text/css" />-->
     <script type="text/javascript" src="js/jquery-2.1.1.js"></script><script type="text/javascript" src="js/bootstrap.min.js"></script></head>
 <body>
 <nav id="top">
@@ -204,19 +204,19 @@
                         </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
                             <div class="product">
-                                <div class="image"><a href="goods.php?id=14"><img src="images/200905/goods_img/14_G_1241968492932.jpg" alt="诺基亚5800XM"  class="goodsimg" /></a></div>
+                                <div class="image"><a href="goods.php?id=20"><img src="images/200905/goods_img/20_G_1242106490663.jpg" alt="三星BC01"  class="goodsimg" /></a></div>
                                 <div class="caption">
-                                    <div class="name"><h3><a href="goods.php?id=14" title="诺基亚5800XM">诺基亚5800...</a></h3></div>
-                                    <div class="price">￥2625元<span></span></div>
+                                    <div class="name"><h3><a href="goods.php?id=20" title="三星BC01">三星BC01</a></h3></div>
+                                    <div class="price">￥280元<span></span></div>
                                 </div>
                             </div>
                         </div>
                                                 <div class="col-lg-4 col-md-4 col-xs-12">
                             <div class="product">
-                                <div class="image"><a href="goods.php?id=22"><img src="images/200905/goods_img/22_G_1241971076358.jpg" alt="多普达Touch HD"  class="goodsimg" /></a></div>
+                                <div class="image"><a href="goods.php?id=3"><img src="images/200905/goods_img/3_G_1241422082168.jpg" alt="诺基亚原装5800耳机"  class="goodsimg" /></a></div>
                                 <div class="caption">
-                                    <div class="name"><h3><a href="goods.php?id=22" title="多普达Touch HD">多普达Touc...</a></h3></div>
-                                    <div class="price">￥5999元<span></span></div>
+                                    <div class="name"><h3><a href="goods.php?id=3" title="诺基亚原装5800耳机">诺基亚原装58...</a></h3></div>
+                                    <div class="price">￥68元<span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -413,6 +413,7 @@
     }
     function addToCartResponse(result)
     {
+        alert(JSON.stringify(result));
         if (result.error > 0)
         {
             // 如果需要缺货登记，跳转

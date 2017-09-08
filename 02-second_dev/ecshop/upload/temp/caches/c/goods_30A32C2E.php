@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504686323;s:8:"maketime";i:1504686323;}<!DOCTYPE html>
+<?php exit;?>a:3:{s:8:"template";a:3:{i:0;s:99:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/goods.dwt";i:1;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_header.lbi";i:2;s:113:"C:/wampstack-5.6.19-0/apache2/htdocs/Lesson/02-second_dev/ecshop/upload/themes/default_zy/library/page_footer.lbi";}s:7:"expires";i:1504770232;s:8:"maketime";i:1504770232;}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -124,7 +124,11 @@
                                     黑色 [ ￥0.00元] </label><br />
                                                                 <input type="hidden" name="spec_list" value="0" />
                                                                                                                                 
-                                <div class="well"><label>购买数量：</label> <input class="form-inline quantity" type="text" value="1" name="number"><a href="javascript:addToCart(22)" class="btn btn-2 ">加入购物车</a></div>
+                                <div class="well">
+                                    <strong>商品总价：</strong>
+                                    <span id="ECS_GOODS_AMOUNT" class="shop"></span>
+                                </div>
+                                <div class="well"><label>购买数量：</label> <input class="form-inline quantity" type="text" value="1" name="number" onblur="changePrice()"><a href="javascript:addToCart(22)" class="btn btn-2 ">加入购物车</a></div>
                                 <div class="share well">
                                     <strong style="margin-right: 13px;">Share :</strong>
                                     <a href="#" class="share-btn" target="_blank">
@@ -315,7 +319,10 @@
     </div>
 </div>
 <script>
+    var goodsId = 22;
     $(document).ready(function(){
+        //计算商品总价格
+        changePrice();
         $(".nav-tabs a").click(function(){
             $(this).tab('show');
         });
@@ -326,6 +333,40 @@
             $(".prev span").text(y);
         });
     });
+    /**
+     * 点选可选属性或改变数量时修改商品价格的函数
+     */
+    function changePrice()
+    {
+        var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+        var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+        $.ajax({
+            url:'goods.php?act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty,
+            Type:'GET',
+            dataType:'JSON',
+            success:changePriceResponse
+        })
+//        Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+    }
+    /**
+     * 接收返回的信息
+     */
+    function changePriceResponse(res)
+    {
+        console.log(res);
+        if (res.err_msg.length > 0)
+        {
+            alert(res.err_msg);
+        }
+        else
+        {
+        console.log(res.qty);
+        console.log(res.result);
+            document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+            if (document.getElementById('ECS_GOODS_AMOUNT'))
+                document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+        }
+    }
     function addToCart(goodsId, parentId)
     {
         var goods        = new Object();
