@@ -1,0 +1,4 @@
+<?php exit;?>09-13 09:44:30 | 2 | extract() expects parameter 1 to be array, null given | phpcms\modules\content\classes\html.class.php | 182
+<?php exit;?>09-13 11:06:33 | 2 | Missing argument 2 for category::delete_child(), called in C:\wampstack-5.6.19-0\apache2\htdocs\Lesson\02-second_dev\phpcms\install_package\phpcms\modules\admin\category.php on line 351 and defined | phpcms\modules\admin\category.php | 346
+<?php exit;?>09-13 11:06:36 | 2 | Missing argument 2 for category::delete_child(), called in C:\wampstack-5.6.19-0\apache2\htdocs\Lesson\02-second_dev\phpcms\install_package\phpcms\modules\admin\category.php on line 351 and defined | phpcms\modules\admin\category.php | 346
+<?php exit;?>09-13 11:13:01 | 2 | extract() expects parameter 1 to be array, null given | phpcms\modules\content\classes\html.class.php | 182
