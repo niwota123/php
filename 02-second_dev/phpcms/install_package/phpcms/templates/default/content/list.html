@@ -1,40 +1,135 @@
-{template "content","header"}
-<!--main-->
-<div class="main">
-	<div class="col-left">
-    	<div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> > </span>{catpos($catid)} 列表</div>
-    	{pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
-        <ul class="list lh24 f14">
-{loop $data $r}
-	<li><span class="rt">{date('Y-m-d H:i:s',$r[inputtime])}</span>·<a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a></li>
-	{if $n%5==0}<li class="bk20 hr"></li>{/if}
-{/loop}
-        </ul>
-        <div id="pages" class="text-c">{$pages}</div>
-{/pc}
-  </div>
-    <div class="col-auto">
-        <div class="box">
-            <h5 class="title-2">频道总排行</h5>
-             {pc:content action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
-            <ul class="content digg">
-				{loop $data $r}
-					<li><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
-				{/loop}
-            </ul>
-            {/pc}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>制造工业</title>
+    ﻿<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="{IMG_PATH}favicon.png">
+    <link rel='icon' href='favicon.ico' type='image/x-ico' />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="{CSS_PATH}default.min.css?t=227" />
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script type="text/javascript" src="{JS_PATH}lib/jquery/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="{JS_PATH}lib/amazeui/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="{JS_PATH}lib/handlebars/handlebars.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}lib/iscroll/iscroll-probe.js"></script>
+    <script type="text/javascript" src="{JS_PATH}lib/amazeui/amazeui.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}lib/raty/jquery.raty.js"></script>
+    <script type="text/javascript" src="{JS_PATH}main.min.js?t=1"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <div class="header-div pull-left">
+            <a class="header-logo">
+                <img src="{IMG_PATH}logo.png" />
+            </a>
+            <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">&#xe68b;</button>
         </div>
-        <div class="bk10"></div>
-        <div class="box">
-            <h5 class="title-2">频道本月排行</h5>
-             {pc:content action="hits" catid="$catid" num="8" order="monthviews DESC" cache="3600"}
-            <ul class="content rank">
-				{loop $data $r}
-				<li><span>{number_format($r[monthviews])}</span><a href="{$r[url]}"{title_style($r[style])} class="title" title="{$r[title]}">{str_cut($r[title],56,'...')}</a></li>
-				{/loop}
+
+
+        <nav>
+            <ul class="header-nav am-collapse">
+                {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+                <ul class="nav-site">
+                    <li><a href="{siteurl($siteid)}"><span>首页</span></a></li>
+                    {loop $data $r}
+                    <li><a href="{$r[url]}"><span>{$r[catname]}</span></a></li>
+                    {/loop}
+                </ul>
+                {/pc}
             </ul>
-            {/pc}
+            <div class="header-serch  am-hide-md-down">
+                <input type="text" name="name" value="" />
+                <em class="font">&#xe632;</em>
+            </div>
+        </nav>
+
+
+    </div>
+</header>
+<div class="com-banner">
+    <img src="{IMG_PATH}index_banner.jpg" />
+</div>
+<div class="com-container">
+    <div class="cms-g">
+        <div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+            <div class="com-nav-left">
+                <h1><em>新闻中心</em><i>NEWS</i></h1>
+
+                {if $top_parentid}
+                <ul>
+                    {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+                    {loop $data $r}
+                    <!-- class="on" -->
+                    <li><a href="{$r[url]}">{$r[catname]}</a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+                {/if}
+
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+            <div class="com-nav-title">
+                <a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+                <span>公司新闻</span>
+            </div>
+
+            <div class="new-list">
+                {pc:content action="lists" catid="$catid" num="1" order="id DESC" page="$page"}
+
+                <ul>
+                    {loop $data $r}
+
+                    <li><a href="{$r[url]}"><span>{$r[title]}</span><em>{date('Y-m-d H:i:s',$r[inputtime])}</em></a></li>
+                    {/loop}
+
+                </ul>
+                {/pc}
+
+            </div>
+
+            <div class="page-list">
+                {$pages}
+            </div>
         </div>
     </div>
 </div>
-{template "content","footer"}
+<div id="doc-oc-demo1" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content com-nav-left com-nav-left1">
+            <ul>
+                <li class="on"><a href="#">公司新闻</a></li>
+                <li><a href="#">产品资讯</a></li>
+                <li><a href="#">营销动态</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+﻿<footer>
+    <div class="cms-g">
+        <div class="footer">
+            <ul>
+                <li><a href="#"><span>网站地图</span></a></li>
+                <li><a href="#"><span>访问统计</span></a></li>
+                <li><a href="#"><span>友情链接</span></a></li>
+                <li><a href="#"><span>法律申明</span></a></li>
+            </ul>
+            <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+        </div>
+
+    </div>
+</footer>
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -60,7 +59,7 @@
     </div>
 </header>
 <div class="com-banner">
-    <img src="images/index_banner.jpg" />
+    <img src="{IMG_PATH}index_banner.jpg" />
 </div>
 <div class="com-container">
     <div class="cms-g">
@@ -70,9 +69,9 @@
 
                 {if $top_parentid}
                 <ul>
-
                     {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
                     {loop $data $r}
+                    <!-- class="on" -->
                     <li><a href="{$r[url]}">{$r[catname]}</a></li>
                     {/loop}
                     {/pc}
@@ -88,41 +87,51 @@
             </div>
 
             <div class="new-list">
+                {php $subCatid = reset(subcat($catid))[catid];}
+                {pc:content action="lists" catid="$subCatid" num="1" order="id DESC" page="$page"}
+
                 <ul>
-                    {pc:content action="lists" catid="18" num="5" order="id DESC"}
-                    {loop $data $v}
-                    <li><a href="{$v[url]}" target="_blank"{title_style($v[style])}><span>{$v[title]}</span></a></li>
+                    {loop $data $r}
+
+                    <li><a href="{$r[url]}"><span>{$r[title]}</span><em>{date('Y-m-d H:i:s',$r[inputtime])}</em></a></li>
                     {/loop}
-                    {/pc}
+
                 </ul>
+                {/pc}
+
+
             </div>
+
             <div class="page-list">
-                <a href="#"><<</a>
-                <a href="#"><</a>
-                <a href="#" class="num">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="num">3</a>
-                <a href="#" class="on">4</a>
-                <a href="#" class="num">5</a>
-                <a href="#" class="num">6</a>
-                <a href="#">></a>
-                <a href="#">>></a>
+                {$pages}
             </div>
         </div>
     </div>
-    <footer>
-        <div class="cms-g">
-            <div class="footer">
-                <ul>
-                    <li><a href="#"><span>网站地图</span></a></li>
-                    <li><a href="#"><span>访问统计</span></a></li>
-                    <li><a href="#"><span>友情链接</span></a></li>
-                    <li><a href="#"><span>法律申明</span></a></li>
-                </ul>
-                <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
-            </div>
-
+</div>
+<div id="doc-oc-demo1" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content com-nav-left com-nav-left1">
+            <ul>
+                <li class="on"><a href="#">公司新闻</a></li>
+                <li><a href="#">产品资讯</a></li>
+                <li><a href="#">营销动态</a></li>
+            </ul>
         </div>
-    </footer>
+    </div>
+</div>
+﻿<footer>
+    <div class="cms-g">
+        <div class="footer">
+            <ul>
+                <li><a href="#"><span>网站地图</span></a></li>
+                <li><a href="#"><span>访问统计</span></a></li>
+                <li><a href="#"><span>友情链接</span></a></li>
+                <li><a href="#"><span>法律申明</span></a></li>
+            </ul>
+            <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+        </div>
+
+    </div>
+</footer>
 </body>
 </html>

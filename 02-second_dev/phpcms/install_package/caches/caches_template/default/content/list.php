@@ -1,40 +1,135 @@
-<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><?php include template("content","header"); ?>
-<!--main-->
-<div class="main">
-	<div class="col-left">
-    	<div class="crumbs"><a href="<?php echo siteurl($siteid);?>">首页</a><span> > </span><?php echo catpos($catid);?> 列表</div>
-    	<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=5ab4b05e97fd14c3ed386604ee1a9399&action=lists&catid=%24catid&num=25&order=id+DESC&page=%24page\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$pagesize = 25;$page = intval($page) ? intval($page) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$content_total = $content_tag->count(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));$pages = pages($content_total, $page, $pagesize, $urlrule);$data = $content_tag->lists(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));}?>
-        <ul class="list lh24 f14">
-<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
-	<li><span class="rt"><?php echo date('Y-m-d H:i:s',$r[inputtime]);?></span>·<a href="<?php echo $r['url'];?>" target="_blank"<?php echo title_style($r[style]);?>><?php echo $r['title'];?></a></li>
-	<?php if($n%5==0) { ?><li class="bk20 hr"></li><?php } ?>
-<?php $n++;}unset($n); ?>
-        </ul>
-        <div id="pages" class="text-c"><?php echo $pages;?></div>
-<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
-  </div>
-    <div class="col-auto">
-        <div class="box">
-            <h5 class="title-2">频道总排行</h5>
-             <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=0ad40a45ad075d8f47798a231e25aec2&action=hits&catid=%24catid&num=10&order=views+DESC&cache=3600\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$tag_cache_name = md5(implode('&',array('catid'=>$catid,'order'=>'views DESC',)).'0ad40a45ad075d8f47798a231e25aec2');if(!$data = tpl_cache($tag_cache_name,3600)){$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'hits')) {$data = $content_tag->hits(array('catid'=>$catid,'order'=>'views DESC','limit'=>'10',));}if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?>
-            <ul class="content digg">
-				<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
-					<li><a href="<?php echo $r['url'];?>" target="_blank"><?php echo $r['title'];?></a></li>
-				<?php $n++;}unset($n); ?>
-            </ul>
-            <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>制造工业</title>
+    ﻿<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="<?php echo IMG_PATH;?>favicon.png">
+    <link rel='icon' href='favicon.ico' type='image/x-ico' />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="<?php echo CSS_PATH;?>default.min.css?t=227" />
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script type="text/javascript" src="<?php echo JS_PATH;?>lib/jquery/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="<?php echo JS_PATH;?>lib/amazeui/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="<?php echo JS_PATH;?>lib/handlebars/handlebars.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>lib/iscroll/iscroll-probe.js"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>lib/amazeui/amazeui.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>lib/raty/jquery.raty.js"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>main.min.js?t=1"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <div class="header-div pull-left">
+            <a class="header-logo">
+                <img src="<?php echo IMG_PATH;?>logo.png" />
+            </a>
+            <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">&#xe68b;</button>
         </div>
-        <div class="bk10"></div>
-        <div class="box">
-            <h5 class="title-2">频道本月排行</h5>
-             <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=2caa10e576ba663010144233732308cd&action=hits&catid=%24catid&num=8&order=monthviews+DESC&cache=3600\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$tag_cache_name = md5(implode('&',array('catid'=>$catid,'order'=>'monthviews DESC',)).'2caa10e576ba663010144233732308cd');if(!$data = tpl_cache($tag_cache_name,3600)){$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'hits')) {$data = $content_tag->hits(array('catid'=>$catid,'order'=>'monthviews DESC','limit'=>'8',));}if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?>
-            <ul class="content rank">
-				<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
-				<li><span><?php echo number_format($r[monthviews]);?></span><a href="<?php echo $r['url'];?>"<?php echo title_style($r[style]);?> class="title" title="<?php echo $r['title'];?>"><?php echo str_cut($r[title],56,'...');?></a></li>
-				<?php $n++;}unset($n); ?>
+
+
+        <nav>
+            <ul class="header-nav am-collapse">
+                <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=b43f1459ac702900c8d44c91a5e796dd&action=category&catid=0&num=25&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>'0','siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'25',));}?>
+                <ul class="nav-site">
+                    <li><a href="<?php echo siteurl($siteid);?>"><span>首页</span></a></li>
+                    <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+                    <li><a href="<?php echo $r['url'];?>"><span><?php echo $r['catname'];?></span></a></li>
+                    <?php $n++;}unset($n); ?>
+                </ul>
+                <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
             </ul>
-            <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+            <div class="header-serch  am-hide-md-down">
+                <input type="text" name="name" value="" />
+                <em class="font">&#xe632;</em>
+            </div>
+        </nav>
+
+
+    </div>
+</header>
+<div class="com-banner">
+    <img src="<?php echo IMG_PATH;?>index_banner.jpg" />
+</div>
+<div class="com-container">
+    <div class="cms-g">
+        <div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+            <div class="com-nav-left">
+                <h1><em>新闻中心</em><i>NEWS</i></h1>
+
+                <?php if($top_parentid) { ?>
+                <ul>
+                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=894824ec88c3701696ad9d879ede6b1d&action=category&catid=%24top_parentid&num=15&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>$top_parentid,'siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'15',));}?>
+                    <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+                    <!-- class="on" -->
+                    <li><a href="<?php echo $r['url'];?>"><?php echo $r['catname'];?></a></li>
+                    <?php $n++;}unset($n); ?>
+                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+                </ul>
+                <?php } ?>
+
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+            <div class="com-nav-title">
+                <a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+                <span>公司新闻</span>
+            </div>
+
+            <div class="new-list">
+                <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=fdd667dde353c173fa84f94aa0432180&action=lists&catid=%24catid&num=1&order=id+DESC&page=%24page\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$pagesize = 1;$page = intval($page) ? intval($page) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$content_total = $content_tag->count(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));$pages = pages($content_total, $page, $pagesize, $urlrule);$data = $content_tag->lists(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));}?>
+
+                <ul>
+                    <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+
+                    <li><a href="<?php echo $r['url'];?>"><span><?php echo $r['title'];?></span><em><?php echo date('Y-m-d H:i:s',$r[inputtime]);?></em></a></li>
+                    <?php $n++;}unset($n); ?>
+
+                </ul>
+                <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+            </div>
+
+            <div class="page-list">
+                <?php echo $pages;?>
+            </div>
         </div>
     </div>
 </div>
-<?php include template("content","footer"); ?>
+<div id="doc-oc-demo1" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content com-nav-left com-nav-left1">
+            <ul>
+                <li class="on"><a href="#">公司新闻</a></li>
+                <li><a href="#">产品资讯</a></li>
+                <li><a href="#">营销动态</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+﻿<footer>
+    <div class="cms-g">
+        <div class="footer">
+            <ul>
+                <li><a href="#"><span>网站地图</span></a></li>
+                <li><a href="#"><span>访问统计</span></a></li>
+                <li><a href="#"><span>友情链接</span></a></li>
+                <li><a href="#"><span>法律申明</span></a></li>
+            </ul>
+            <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+        </div>
+
+    </div>
+</footer>
+</body>
+</html>

@@ -1,5 +1,4 @@
-<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?>
-<!DOCTYPE html>
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <title>制造工业</title>
@@ -60,7 +59,7 @@
     </div>
 </header>
 <div class="com-banner">
-    <img src="images/index_banner.jpg" />
+    <img src="<?php echo IMG_PATH;?>index_banner.jpg" />
 </div>
 <div class="com-container">
     <div class="cms-g">
@@ -70,9 +69,9 @@
 
                 <?php if($top_parentid) { ?>
                 <ul>
-
                     <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=894824ec88c3701696ad9d879ede6b1d&action=category&catid=%24top_parentid&num=15&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>$top_parentid,'siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'15',));}?>
                     <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+                    <!-- class="on" -->
                     <li><a href="<?php echo $r['url'];?>"><?php echo $r['catname'];?></a></li>
                     <?php $n++;}unset($n); ?>
                     <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
@@ -88,41 +87,51 @@
             </div>
 
             <div class="new-list">
+                <?php $subCatid = reset(subcat($catid))[catid];?>
+                <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=2fc728ba23aac7d46dd1d3a3951911b8&action=lists&catid=%24subCatid&num=1&order=id+DESC&page=%24page\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$pagesize = 1;$page = intval($page) ? intval($page) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$content_total = $content_tag->count(array('catid'=>$subCatid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));$pages = pages($content_total, $page, $pagesize, $urlrule);$data = $content_tag->lists(array('catid'=>$subCatid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));}?>
+
                 <ul>
-                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=2068b42430dd06a5ea00ccfd2779b76d&action=lists&catid=18&num=5&order=id+DESC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'18','order'=>'id DESC','limit'=>'5',));}?>
-                    <?php $n=1;if(is_array($data)) foreach($data AS $v) { ?>
-                    <li><a href="<?php echo $v['url'];?>" target="_blank"<?php echo title_style($v[style]);?>><span><?php echo $v['title'];?></span></a></li>
+                    <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+
+                    <li><a href="<?php echo $r['url'];?>"><span><?php echo $r['title'];?></span><em><?php echo date('Y-m-d H:i:s',$r[inputtime]);?></em></a></li>
                     <?php $n++;}unset($n); ?>
-                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
                 </ul>
+                <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+
             </div>
+
             <div class="page-list">
-                <a href="#"><<</a>
-                <a href="#"><</a>
-                <a href="#" class="num">1</a>
-                <a href="#" class="num">2</a>
-                <a href="#" class="num">3</a>
-                <a href="#" class="on">4</a>
-                <a href="#" class="num">5</a>
-                <a href="#" class="num">6</a>
-                <a href="#">></a>
-                <a href="#">>></a>
+                <?php echo $pages;?>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="cms-g">
-            <div class="footer">
-                <ul>
-                    <li><a href="#"><span>网站地图</span></a></li>
-                    <li><a href="#"><span>访问统计</span></a></li>
-                    <li><a href="#"><span>友情链接</span></a></li>
-                    <li><a href="#"><span>法律申明</span></a></li>
-                </ul>
-                <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
-            </div>
-
+</div>
+<div id="doc-oc-demo1" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content com-nav-left com-nav-left1">
+            <ul>
+                <li class="on"><a href="#">公司新闻</a></li>
+                <li><a href="#">产品资讯</a></li>
+                <li><a href="#">营销动态</a></li>
+            </ul>
         </div>
-    </footer>
+    </div>
+</div>
+﻿<footer>
+    <div class="cms-g">
+        <div class="footer">
+            <ul>
+                <li><a href="#"><span>网站地图</span></a></li>
+                <li><a href="#"><span>访问统计</span></a></li>
+                <li><a href="#"><span>友情链接</span></a></li>
+                <li><a href="#"><span>法律申明</span></a></li>
+            </ul>
+            <span style="color:#fff;"><a href="http://www.haothemes.com/" target="_blank" title="好主题">好主题</a>提供 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+        </div>
+
+    </div>
+</footer>
 </body>
 </html>
