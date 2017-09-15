@@ -112,7 +112,7 @@ function showpic(type, replay) {
 				next_picid = parseInt(i) - 1;
 			}
 		}
-		url = $("#pictureurls li:nth-child("+i+") img").attr("rel");
+		url = $("#pictureurls li:nth-child("+i+") img").attr(" ");
 		$("#big-pic").html("<img src='"+url+"' onload='loadpic("+next_picid+")'>");
 		$('#big-pic img').LoadImage(true, 890, 650,$("#load_pic").attr('rel'));
 		$("#picnum").html("("+i+"/"+totalnum+")");

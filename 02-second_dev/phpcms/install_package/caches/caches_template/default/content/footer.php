@@ -1,4 +1,4 @@
-﻿<footer>
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?>﻿<footer>
     <div class="cms-g">
         <div class="footer">
             <ul>

@@ -224,6 +224,10 @@ class index {
 		$CAT = $CATEGORYS[$catid];
 		$siteid = $GLOBALS['siteid'] = $CAT['siteid'];
 		extract($CAT);
+        if ($child){
+            @session_start();
+            $_SESSION['catname']=$catname;
+        }
 		$setting = string2array($setting);
 		//SEO
 		if(!$setting['meta_title']) $setting['meta_title'] = $catname;
