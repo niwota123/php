@@ -1,0 +1,64 @@
+
+
+<body>
+<!--Top-->
+<nav id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <select class="language">
+                    <option value="English" selected>English</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                </select>
+                <select class="currency">
+                    <option value="USD" selected>USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="DDD">DDD</option>
+                </select>
+            </div>
+            <div class="col-xs-6">
+                <ul class="top-link">
+                    {insert name='member_info'}
+                    <!--<li><a href="account.html"><span class="glyphicon glyphicon-user"></span> My Account</a></li>-->
+                    <!--<li><a href="contact.html"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Header-->
+<header class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="logo"><img src="images/logo.png" /></div>
+        </div>
+        <div class="col-md-4">
+            <form class="form-search">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div id="cart"><a class="btn btn-1" href="{$cart_data.url}"><span class="glyphicon glyphicon-shopping-cart"></span>CART : {insert name='cart_info'} ITEM</a></div>
+        </div>
+    </div>
+</header>
+<!--Navigation-->
+<nav id="menu" class="navbar">
+    <div class="container">
+        <div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+            <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index.php"{if $navigator_list.config.index eq 1} class="cur"{/if}>{$lang.home}<span></span></a></li>
+                <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+                <li><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="cur"{/if}>{$nav.name}<span></span></a></li>
+                <!-- {/foreach} -->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+

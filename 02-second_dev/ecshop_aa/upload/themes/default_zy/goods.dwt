@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mobile Shop</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom Fonts -->
+    <!--<link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="./fonts/font-slider.css" rel="stylesheet" type="text/css" />-->
+
+    {insert_scripts files='jquery-2.1.1.js,bootstrap.min.js'}
+</head>
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!--//////////////////////////////////////////////////-->
+<!--///////////////////Product Page///////////////////-->
+<!--//////////////////////////////////////////////////-->
+<div id="page-content" class="single-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    {$ur_here}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div id="main-content" class="col-md-8">
+                <div class="product">
+                    <div class="col-md-6">
+                        <div class="image">
+                            <!-- {if $pictures}-->
+                            <a href="javascript:;" onclick="window.open('gallery.php?id={$goods.goods_id}'); return false;">
+                                <img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}"/>
+                            </a>
+                            <!-- {else} -->
+                            <img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}"/>
+                            <!-- {/if}-->
+
+                            <div class="image-more">
+                                <ul class="row">
+                                    <!-- {foreach from=$pictures item=picture}-->
+                                    <li class="col-lg-3 col-sm-3 col-xs-4"><a href="gallery.php?id={$id}&amp;img={$picture.img_id}" target="_blank"><img  src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}" class="B_blue img-responsive" /></a>
+                                    </li>
+                                    <!--{/foreach}-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+                        <div class="col-md-6">
+                            <div class="caption">
+                                <div class="name"><h3>{$goods.goods_style_name}</h3></div>
+                                <div class="info">
+                                    <ul>
+                                        <li>{$lang.goods_brand}{$goods.goods_brand}</li>
+                                        <li>{$lang.goods_sn}{$goods.goods_sn}</li>
+                                        <!-- {if $goods.goods_number neq "" and $cfg.show_goodsnumber} 商品库存-->
+                                        <!-- {if $goods.goods_number eq 0} -->
+                                        <li>{$lang.goods_number}  <span style="color: red">{$lang.stock_up}</span></li>
+                                        <!-- {else} -->
+                                        <li>{$lang.goods_number}{$goods.goods_number} {$goods.measure_unit}</li>
+                                        <!-- {/if} -->
+                                        <!-- {/if} -->
+                                    </ul>
+                                </div>
+                                <div class="price">{$goods.shop_price}<span>{$goods.market_price}</span></div>
+
+                                <!-- {* 开始循环所有可选属性 *} -->
+                                <!-- {foreach from=$specification item=spec key=spec_key} -->
+                                <strong>{$spec.name}:</strong><br />
+                                <!-- {* 判断属性是复选还是单选 *} -->
+                                <!-- {if $spec.attr_type eq 1} -->
+                                <!-- {if $cfg.goodsattr_style eq 1} -->
+                                <!-- {foreach from=$spec.values item=value key=key} -->
+                                <label for="spec_value_{$value.id}">
+                                    <input type="radio" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} onclick="changePrice()" />
+                                    {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}] </label><br />
+                                <!-- {/foreach} -->
+                                <input type="hidden" name="spec_list" value="{$key}" />
+                                <!-- {else} -->
+                                <select name="spec_{$spec_key}" onchange="changePrice()">
+                                    <!-- {foreach from=$spec.values item=value key=key} -->
+                                    <option label="{$value.label}" value="{$value.id}">{$value.label} {if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if}{if $value.price neq 0}{$value.format_price}{/if}</option>
+                                    <!-- {/foreach} -->
+                                </select>
+                                <input type="hidden" name="spec_list" value="{$key}" />
+                                <!-- {/if} -->
+                                <!-- {else} -->
+                                <!-- {foreach from=$spec.values item=value key=key} -->
+                                <label for="spec_value_{$value.id}">
+                                    <input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" />
+                                    {$value.label} [{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}] </label><br />
+                                <!-- {/foreach} -->
+                                <input type="hidden" name="spec_list" value="{$key}" />
+                                <!-- {/if} -->
+                                <!-- {/foreach} -->
+                                <!-- {* 结束循环可选属性 *} -->
+
+
+                                <div class="well">
+                                    <strong>{$lang.amount}：</strong>
+                                    <span id="ECS_GOODS_AMOUNT" class="shop"></span>
+                                </div>
+
+                                <div class="well"><label>{$lang.number}：</label> <input class="form-inline quantity" type="text" value="1" name="number" onblur="changePrice()"><a href="javascript:addToCart({$goods.goods_id})" class="btn btn-2 ">加入购物车</a></div>
+                                <div class="share well">
+                                    <strong style="margin-right: 13px;">Share :</strong>
+                                    <a href="#" class="share-btn" target="_blank">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="share-btn" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="#" class="share-btn" target="_blank">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <div class="clear"></div>
+                </div>
+                <div class="product-desc">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#description">{$lang.goods_brief}</a></li>
+                        <li><a href="#review">{$lang.goods_attr}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="description" class="tab-pane fade in active">
+                            {$goods.goods_desc}
+                        </div>
+                        <div id="review" class="tab-pane fade">
+                            <table class="table table-bordered" bgcolor="#dddddd">
+                                <!-- {foreach from=$properties item=property_group key=key} -->
+                                <tr>
+                                    <th colspan="2" bgcolor="#FFFFFF">{$key|escape}</th>
+                                </tr>
+                                <!-- {foreach from=$property_group item=property} -->
+                                <tr>
+                                    <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[{$property.name|escape:html}]</td>
+                                    <td bgcolor="#FFFFFF" align="left" width="70%">{$property.value}</td>
+                                </tr>
+                                <!-- {/foreach}-->
+                                <!-- {/foreach}-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- {if $bought_goods} -->
+                <div class="product-related">
+                    <div class="heading"><h2>{$lang.shopping_and_other}</h2></div>
+                    <div class="products">
+
+                        <!--{foreach from=$bought_goods item=bought_goods_data}-->
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="product">
+                                <div class="image"><a href="{$bought_goods_data.url}"><img src="{$bought_goods_data.goods_img}" alt="{$bought_goods_data.goods_name}"  class="goodsimg" /></a></div>
+
+                                <div class="caption">
+                                    <div class="name"><h3><a href="{$bought_goods_data.url}" title="{$bought_goods_data.goods_name}">{$bought_goods_data.short_name}</a></h3></div>
+                                    <div class="price">{$bought_goods_data.shop_price}<span>{$bought_goods_data.market_price}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- {/foreach} -->
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- {/if} -->
+
+
+            </div>
+            <div id="sidebar" class="col-md-4">
+                <div class="widget wid-categories">
+                    <div class="heading"><h4>CATEGORIES</h4></div>
+                    <div class="content">
+                        <ul>
+                            <li><a href="#">PC Computers</a></li>
+                            <li><a href="#">Laptops & Notebooks</a></li>
+                            <li><a href="#">Mobiles & Tablet</a></li>
+                            <li><a href="#">Software</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget wid-type">
+                    <div class="heading"><h4>TYPE</h4></div>
+                    <div class="content">
+                        <select>
+                            <option value="EL" selected>Electronics</option>
+                            <option value="MT">Mice and Trackballs</option>
+                            <option value="WC">Web Cameras</option>
+                            <option value="TA">Tablates</option>
+                            <option value="AP">Audio Parts</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget wid-discouts">
+                    <div class="heading"><h4>DISCOUNTS</h4></div>
+                    <div class="content">
+                        <label class="checkbox"><input type="checkbox" name="discount" checked="">Upto - 10% (20)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">40% - 50% (5)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">30% - 20% (7)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">10% - 5% (2)</label>
+                        <label class="checkbox"><input type="checkbox" name="discount">Other(50)</label>
+                    </div>
+                </div>
+                <div class="widget wid-brand">
+                    <div class="heading"><h4>BRAND</h4></div>
+                    <div class="content">
+                        <label class="checkbox"><input type="checkbox" name="brand">Nokia</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Samsung</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Iphone</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">HTC</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Oppo</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Kings</label>
+                        <label class="checkbox"><input type="checkbox" name="brand">Zumba</label>
+                    </div>
+                </div>
+                <div class="widget wid-product">
+                    <div class="heading"><h4>LATEST</h4></div>
+                    <div class="content">
+                        <div class="product">
+                            <a href="#"><img src="images/galaxy-note.jpg" /></a>
+                            <div class="wrapper">
+                                <h5><a href="#">Samsung Galaxy Tab</a></h5>
+                                <div class="price">$122</div>
+                                <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <a href="#"><img src="images/galaxy-s4.jpg" /></a>
+                            <div class="wrapper">
+                                <h5><a href="#">Samsung Galaxy Tab</a></h5>
+                                <div class="price">$122</div>
+                                <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <a href="#"><img src="images/Z1.png" /></a>
+                            <div class="wrapper">
+                                <h5><a href="#">Samsung Galaxy Tab</a></h5>
+                                <div class="price">$122</div>
+                                <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- IMG-thumb -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+
+    var goodsId = {$goods_id};
+
+    $(document).ready(function(){
+        //计算商品总价格
+        changePrice();
+
+        $(".nav-tabs a").click(function(){
+            $(this).tab('show');
+        });
+        $('.nav-tabs a').on('shown.bs.tab', function(event){
+            var x = $(event.target).text();         // active tab
+            var y = $(event.relatedTarget).text();  // previous tab
+            $(".act span").text(x);
+            $(".prev span").text(y);
+        });
+    });
+    /**
+     * 点选可选属性或改变数量时修改商品价格的函数
+     */
+    function changePrice()
+    {
+        var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+        var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+
+        $.ajax({
+            url:'goods.php?act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty,
+            Type:'GET',
+            dataType:'JSON',
+            success:changePriceResponse
+        })
+
+
+//        Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+
+    }
+
+    /**
+     * 接收返回的信息
+     */
+    function changePriceResponse(res)
+    {
+        console.log(res);
+        if (res.err_msg.length > 0)
+        {
+            alert(res.err_msg);
+        }
+        else
+        {
+        console.log(res.qty);
+        console.log(res.result);
+
+            document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+            if (document.getElementById('ECS_GOODS_AMOUNT'))
+                document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+        }
+    }
+
+
+    function addToCart(goodsId, parentId)
+    {
+        var goods        = new Object();
+        var spec_arr     = new Array();
+        var fittings_arr = new Array();
+        var number       = 1;
+        var formBuy      = document.forms['ECS_FORMBUY'];
+        var quick		   = 0;
+
+        // 检查是否有商品规格
+        if (formBuy)
+        {
+            spec_arr = getSelectedAttributes(formBuy);
+
+            if (formBuy.elements['number'])
+            {
+                number = formBuy.elements['number'].value;
+            }
+
+            quick = 1;
+        }
+
+        goods.quick    = quick;
+        goods.spec     = spec_arr;
+        goods.goods_id = goodsId;
+        goods.number   = number;
+        goods.parent   = (typeof(parentId) == "undefined") ? 0 : parseInt(parentId);
+
+        var json_data = 'goods='+JSON.stringify(goods)
+
+        $.ajax({
+            url:'flow.php?step=add_to_cart',
+            type:'POST',
+            dataType:'JSON',
+            data:json_data,
+            success:addToCartResponse,
+        });
+
+
+    }
+
+
+    function getSelectedAttributes(formBuy)
+    {
+        var spec_arr = new Array();
+        var j = 0;
+
+        for (i = 0; i < formBuy.elements.length; i ++ )
+        {
+            var prefix = formBuy.elements[i].name.substr(0, 5);
+
+            if (prefix == 'spec_' && (
+                ((formBuy.elements[i].type == 'radio' || formBuy.elements[i].type == 'checkbox') && formBuy.elements[i].checked) ||
+                formBuy.elements[i].tagName == 'SELECT'))
+            {
+                spec_arr[j] = formBuy.elements[i].value;
+                j++ ;
+            }
+        }
+
+        return spec_arr;
+    }
+
+    function addToCartResponse(result)
+    {
+        //alert(JSON.stringify(result));
+        if (result.error > 0)
+        {
+            // 如果需要缺货登记，跳转
+            if (result.error == 2)
+            {
+                if (confirm(result.message))
+                {
+                    location.href = 'user.php?act=add_booking&id=' + result.goods_id + '&spec=' + result.product_spec;
+                }
+            }
+            // 没选规格，弹出属性选择框
+            else if (result.error == 6)
+            {
+                openSpeDiv(result.message, result.goods_id, result.parent);
+            }
+            else
+            {
+                alert(result.message);
+            }
+        }
+        else
+        {
+            var cartInfo = document.getElementById('ECS_CARTINFO');
+            var cart_url = 'flow.php?step=cart';
+            if (cartInfo)
+            {
+                cartInfo.innerHTML = result.content;
+            }
+
+            if (result.one_step_buy == '1')
+            {
+                location.href = cart_url;
+            }
+            else
+            {
+                switch(result.confirm_type)
+                {
+                    case '1' :
+                        if (confirm(result.message)) location.href = cart_url;
+                        break;
+                    case '2' :
+                        if (!confirm(result.message)) location.href = cart_url;
+                        break;
+                    case '3' :
+                        location.href = cart_url;
+                        break;
+                    default :
+                        break;
+                }
+            }
+        }
+    }
+</script>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+

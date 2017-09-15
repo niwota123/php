@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{$page_title}</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+  <!-- Custom CSS -->
+  <link href="./css/style.css" rel="stylesheet" type="text/css" />
+
+  <!-- Custom Fonts -->
+  <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="./fonts/font-slider.css" rel="stylesheet" type="text/css" />
+
+
+  {insert_scripts files='jquery-2.1.1.js,bootstrap.min.js'}
+  {* 包含脚本文件 *}
+  {insert_scripts files='common.js,user.js,transport.js'}
+
+</head>
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<!--//////////////////////////////////////////////////-->
+<!--///////////////////Account Page///////////////////-->
+<!--//////////////////////////////////////////////////-->
+<div id="page-content" class="single-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="breadcrumb">
+          {$ur_here}
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="heading"><h2>Login</h2></div>
+        <form name="form1" id="ff1" action="user.php" method="post">
+
+          <div class="form-group">
+            <input type="hidden" name="act" value="act_login" />
+            <input type="hidden" name="back_act" value="{$back_act}" />
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username :" name="username" id="username" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password :" name="password" id="email" required>
+          </div>
+
+          <div class="form-group">
+            <!-- 判断是否启用验证码{if $enabled_captcha} -->
+              {$lang.comment_captcha}
+              <input type="text" size="8" name="captcha" class="inputBg" />
+                <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" />
+            <!--{/if}-->
+          </div>
+          <button type="submit" class="btn btn-1" name="login" id="login">Login</button>
+          <a href="#">Forgot Your Password ?</a>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="heading"><h2>New User ? Create An Account.</h2></div>
+        <form name="form2" id="ff2" method="post" action="register.php">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="First Name :" name="firstname" id="firstname" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Last Name :" name="lastname" id="lastname" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="Email Address :" name="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" placeholder="Mobile :" name="phone" id="phone" required>
+          </div>
+          <div class="form-group">
+            <input name="gender" id="gender" type="radio"> Male <input name="gender" id="gender" type="radio"> Female
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password :" name="password" id="password" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Retype Password :" name="repassword" id="repassword" required>
+          </div>
+          <div class="form-group">
+            <input name="agree" id="agree" type="checkbox" > I agree to your website.
+          </div>
+          <button type="submit" class="btn btn-1">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>
