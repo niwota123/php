@@ -1,0 +1,13 @@
+答案:
+1,select dept_no ,count(*)as dept_count,d_name from em join dept on em.dept_no=dept.d_no group by dept_no;
+select dept.d_name,dept_no,count(*) as dept_count from dept,em where dept.d_no=em.dept_no group by dept_no;
+
+2,select dept_no ,avg(e_salary)as avg_salary,d_name from em join dept on em.dept_no=dept.d_no group by dept_no;
+
+3,select * from em where e_salary in(select max(e_salary) from em,dept where dept_no = d_no group by d_name);
+
+4,select em.*,dept.d_location from em join dept on em.dept_no=dept.d_no and dept.d_location='shenzhen';
+select * from em where dept_no=(select d_no from dept where d_location='shenzhen');
+
+5,select dept.d_name,dept.d_location from dept join em on dept.d_no=em.dept_no and em.e_name='james';
+select dept.d_name,dept.d_location from dept left join em on dept.d_no=em.dept_no and em.e_name='james';
