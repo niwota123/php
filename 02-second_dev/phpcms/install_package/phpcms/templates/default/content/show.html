@@ -1,0 +1,47 @@
+
+{template "content","header"}
+
+<div class="com-banner">
+    <img src="{IMG_PATH}index_banner.jpg" />
+</div>
+<div class="com-container">
+    <div class="cms-g">
+        <div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+            <div class="com-nav-left">
+                <h1><em>{php @session_start(); echo $_SESSION['catname'];}</em><i>NEWS</i></h1>
+
+                {if $top_parentid}
+                <ul>
+                    {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+                    {loop $data $r}
+                    <!-- class="on" -->
+                    <li><a href="{$r[url]}">{$r[catname]}</a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+                {/if}
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+            <div class="com-nav-title">
+                <a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+                <span>{$title}</span>
+            </div>
+            <div class="com-nav-content">
+                    <span>{if $allow_visitor==1}
+                {$content}
+                        <!--内容关联投票-->
+                {if $voteid}<script language="javascript" src="{APP_PATH}index.php?m=vote&c=index&a=show&action=js&subjectid={$voteid}&type=2"></script>{/if}
+                
+            {else}
+                <CENTER><a href="{APP_PATH}index.php?m=content&c=readpoint&allow_visitor={$allow_visitor}"><font color="red">阅读此信息需要您支付 <B><I>{$readpoint} {if $paytype}元{else}点{/if}</I></B>，点击这里支付</font></a></CENTER>
+            {/if}</span>
+            </div>
+            <div class="com-info-page">
+                <a href="{$previous_page[url]}">上一篇</a><a href="{$next_page[url]}">下一篇</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+﻿﻿{template "content","footer"}

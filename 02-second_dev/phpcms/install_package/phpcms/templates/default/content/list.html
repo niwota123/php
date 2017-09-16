@@ -1,0 +1,74 @@
+{template "content","header"}
+<div class="com-banner">
+    <img src="{IMG_PATH}index_banner.jpg" />
+</div>
+<div class="com-container">
+    <div class="cms-g">
+        <div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+            <div class="com-nav-left">
+                <h1><em>{php @session_start(); echo $_SESSION['catname'];}</em><i>NEWS</i></h1>
+
+                {if $top_parentid}
+                <ul>
+                    {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+                    {loop $data $r}
+                    <!-- class="on" -->
+                    <li {if $catid==$r[catid]} class="on" {/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+                {/if}
+
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+            <div class="com-nav-title">
+                <a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+                <span>公司新闻</span>
+            </div>
+
+            {php $subCatid = reset(subcat($catid))[catid];}
+            {pc:content action="lists" catid="$catid" num="1" order="id DESC" page="$page"}
+            {if $top_parentid==17}
+            <!--新闻列表begin-->
+            <div class="new-list">
+                <ul>
+                    {loop $data $r}
+                    <li><a href="{$r[url]}"><span>{$r[title]}</span><em>{date('Y-m-d H:i:s',$r[inputtime])}</em></a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <!--新闻列表end-->
+            {else}
+            <!--应用列表 begin-->
+            <div class="case-list">
+                {loop $data $r}
+                <div class="am-u-sm-6 am-u-md-4 am-u-lg-3">
+                    <div class="case-list-item">
+                        <a href="{$r[url]}"><img src="{$r[thumb]}" /><span>{$r[title]}</span></a>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            <!--应用列表end-->
+            {/if}
+            {/pc}
+
+            <div class="page-list">
+                {$pages}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="doc-oc-demo1" class="am-offcanvas">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content com-nav-left com-nav-left1">
+            <ul>
+                <li class="on"><a href="#">公司新闻</a></li>
+                <li><a href="#">产品资讯</a></li>
+                <li><a href="#">营销动态</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+﻿{template "content","footer"}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    </head>
+    <body>
+    <button class="get">get请求新闻数据</button>
+    <button class="post">post请求新闻数据</button>
+
+    <div>新闻内容</div>
+    <div class="show"></div>
+    <script>
+        $('.get').click(function(event) {
+            // $.get('0ajax_server.php?id=0',function(response,status){
+
+            //     $('.show').html(response);
+
+
+            // })
+
+
+
+            $.ajax({
+                async:false,
+                url: '0ajax_server.php?id=0',
+                type: 'GET',
+                success:function(response,status){
+                $('.show').html(response);
+                }}
+            )
+
+        });
+
+
+        $('.post').click(function(event) {
+
+            // $.post('0ajax_server.php', {id:'1'}, function(response, textStatus) {
+            //     $('.show').html(response);
+            // });
+
+            $.ajax({
+                url: '0ajax_server.php',
+                type: 'POST',
+                data:{id:'1'},
+                success:function(response,status){
+                $('.show').html(response);
+                }}
+            )
+        });
+    </script>
+    </body>
+</html>

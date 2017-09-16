@@ -16,7 +16,11 @@ if (isset($_POST['email'])) {
     $pwd = $_POST['password'];
     //判断空
     if (strlen($email)>0&&strlen($pwd)>0) {
+<<<<<<< HEAD
         $sql = "SELECT * FROM user_info WHERE user_email='{$email}' AND user_pw='{$pwd}'";
+=======
+        $sql = "SELECT * FROM user_info WHERE user_email='{$email}' AND user_pw='{$pwd}' AND is_used=1";
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
 
         $res = db_query($sql);
 
@@ -36,15 +40,27 @@ if (isset($_POST['email'])) {
             session_start();
             $_SESSION['user_id']= $res[0]['user_id'];
             $_SESSION['user_name']=$res[0]['user_name'];
+<<<<<<< HEAD
 
             jump('登录成功,正在跳转...','/template/Home.php');
         }else{
             echo "<script>alert('密码或邮箱不正确!')</script>";
+=======
+            $_SESSION['role_id']=$res[0]['role_id'];
+
+            jump('登录成功,正在跳转...','/action.php?act=home');
+        }else{
+            jump('密码或邮箱不正确!...','/index.php');
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
         }
 
 
     }else {
+<<<<<<< HEAD
         echo "<script>alert('密码和邮箱不能为空!')</script>";
+=======
+        jump('密码和邮箱不能为空!...','/index.php');
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
     }
 
 }else{
@@ -55,7 +71,11 @@ if (isset($_POST['email'])) {
         $timestamp = $_COOKIE['timestamp'];
         $user_id = $_COOKIE['user_id'];
 
+<<<<<<< HEAD
         $sql = "SELECT user_email,user_pw,user_id,user_name FROM user_info WHERE user_id={$user_id}";
+=======
+        $sql = "SELECT user_email,user_pw,user_id,user_name,role_id FROM user_info WHERE user_id={$user_id}";
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
         $res = db_query($sql);
         if ($res) {
             $email = $res[0]['user_email'];
@@ -67,8 +87,14 @@ if (isset($_POST['email'])) {
                 session_start();
                 $_SESSION['user_id']= $res[0]['user_id'];
                 $_SESSION['user_name']=$res[0]['user_name'];
+<<<<<<< HEAD
 
                 jump('自动登录成功,正在跳转...','/template/Home.php');
+=======
+                $_SESSION['role_id']=$res[0]['role_id'];
+
+                jump('自动登录成功,正在跳转...','/action.php?act=home');
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
             }
         }
 

@@ -41,6 +41,7 @@
                 </tbody>
             </table>
         </div><!--                body-->
+<<<<<<< HEAD
         <div class="panel-footer">
 
             共有<?php echo $total_count; ?>条记录，当前第<?php echo $page.'/'.$total_page; ?>页
@@ -52,6 +53,9 @@
                 <li><a href="<?php echo $last_page; ?>">尾页</a></li>
             </ul>
         </div>
+=======
+        <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_page.php'?>
+>>>>>>> 82aa7a2cf8591ff48d2b448cb53a9829383b72e4
 
     </div>
 <?php include_once __DIR__.DIRECTORY_SEPARATOR.'Common_footer.php'?>

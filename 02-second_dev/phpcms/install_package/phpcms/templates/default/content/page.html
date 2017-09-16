@@ -1,0 +1,32 @@
+{template "content","header"}
+
+<div class="com-banner">
+    <img src="{IMG_PATH}index_banner.jpg"/>
+</div>
+
+<div class="com-container">
+    <div class="cms-g">
+        <div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+            <div class="com-nav-left">
+                <h1><em>{php @session_start(); echo $_SESSION['catname'];}</em><i>ABOUT US</i></h1>
+                <ul >
+                    {loop $arrchild_arr $cid}
+                    <li{if $catid==$cid} class="on"{/if}><a href="{$CATEGORYS[$cid][url]}">{$CATEGORYS[$cid][catname]}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+            <div class="com-nav-title">
+                <a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+                <span>{$title}</span>
+            </div>
+            <div class="com-nav-content">
+                <span>{$content}</span>
+            </div>
+        </div>
+    </div>
+</div>
+﻿{template "content","footer"}
+
+﻿

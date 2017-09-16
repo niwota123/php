@@ -1,0 +1,63 @@
+{template "content","header"}
+
+<div class="com-banner">
+	<img src="{IMG_PATH}index_banner.jpg" />
+</div>
+<div class="com-container">
+	<div class="cms-g">
+		<div class="am-hide-sm-only am-u-md-3 am-u-lg-3">
+			<div class="com-nav-left">
+				<h1><em>{php @session_start(); echo $_SESSION['catname'];}</em><i>PRODUCT</i></h1>
+				{if $top_parentid}
+				<ul>
+					{pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+					{loop $data $r}
+					<!-- class="on" -->
+					<li><a href="{$r[url]}">{$r[catname]}</a></li>
+					{/loop}
+					{/pc}
+				</ul>
+				{/if}
+			</div>
+		</div>
+		<div class="am-u-sm-12 am-u-md-9 am-u-lg-9">
+			<div class="com-nav-title">
+				<a href="#doc-oc-demo1" class="font am-show-sm-only" data-am-offcanvas>&#xe68b;</a>
+				<span>LED灯具</span>
+			</div>
+			<div class="com-nav-category">
+				<ul>
+					<li class="on"><span><a href="#">LED T8灯管</a></span></li>
+					<li><span><a href="#">LED射灯</a></span></li>
+					<li><span><a href="#">LED软光灯</a></span></li>
+					<li><span><a href="#">LED泛光灯</a></span></li>
+					<li><span><a href="#">LED洗墙灯</a></span></li>
+				</ul>
+			</div>
+
+			{pc:content action="lists" catid="$catid" num="10" order="id DESC" page="$page"}
+			<div class="product-list">
+
+				{loop $data $r}
+				<div class="am-u-sm-6 am-u-md-4 am-u-lg-3">
+					<div class="product-list-item">
+						<div class="product-list-item-bj">
+							<a href="{$r[url]}"><img src="{$r[thumb]}" /></a>
+						</div>
+						<div class="product-list-item-title">
+							<a href="{$r[url]}" class="f-toe">{str_cut($r[title],28)}</a>
+						</div>
+					</div>
+				</div>
+				{/loop}
+
+			</div>
+			<div class="page-list">
+				{$pages}
+			</div>
+			{/pc}
+		</div>
+	</div>
+</div>
+
+﻿﻿{template "content","footer"}
