@@ -69,6 +69,7 @@ class index {
 		require_once CACHE_MODEL_PATH.'content_output.class.php';
 		$content_output = new content_output($modelid,$catid,$CATEGORYS);
 		$data = $content_output->get($rs);
+		//var_dump($CATEGORYS);
 		extract($data);
 		
 		//检查文章会员组权限

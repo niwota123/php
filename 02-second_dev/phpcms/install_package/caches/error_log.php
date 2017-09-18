@@ -129,3 +129,14 @@
 <?php exit;?>09-15 11:44:36 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
 <?php exit;?>09-15 11:44:41 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
 <?php exit;?>09-15 11:45:10 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
+<?php exit;?>09-18 09:03:38 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
+<?php exit;?>09-18 09:03:39 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:03:39 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:03:47 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:03:48 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:03:49 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:03:50 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
+<?php exit;?>09-18 09:34:00 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:40:52 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category.php | 11
+<?php exit;?>09-18 09:49:27 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
+<?php exit;?>09-18 10:01:37 | 2048 | Only variables should be passed by reference | caches\caches_template\default\content\category_picture.php | 37
