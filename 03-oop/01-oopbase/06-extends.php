@@ -27,7 +27,7 @@ class Animal{
 class Dog extends Animal {
 
 
-    //属性的重载-重载的属性的访问控制权限,必须和父类的权限一致或者更低(例子,父类权限是protected 子类的权限必须是protected或者private,不能是public)
+    //属性的重载-重载的属性的访问控制权限,必须和父类的权限一致或者更宽松(例子,父类权限是protected 子类的权限必须是protected或者public,不能是private)
     public $foot = '3';
     //方法的重载,子类重载父类的方法
     function eat()
