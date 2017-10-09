@@ -40,13 +40,16 @@
 
 //\think\Route::bind('index/blog/hello');
 
-\think\Route::bind('blog/index');
+//\think\Route::bind('blog/index');
+
+\think\Route::bind('user/index');
 
 //\think\Route::resource('blog','index/blog');
 
 return [
-    'show/:id'=>'blog/index/show',
-    'del/:id'=>'blog/index/del'
+    'add/[:id]'=>'user/index/adduser'
+//    'show/:id'=>'blog/index/show',
+//    'del/:id'=>'blog/index/del'
 //    '__pattern__'=>['name'=>'[a-zA-Z]+'],
 //
 //    'demo/[:name]$'=>'index/index/demo?pwd=666666',
