@@ -26,6 +26,8 @@
 //2,使用配置 composer.json文件的方式
 //2.1-在composer.json文件中添加三方库
 //{
+\
+
 //    "require": {
 //    "filp/whoops": "^2.1",
 //    "symfony/var-dumper":"*"
