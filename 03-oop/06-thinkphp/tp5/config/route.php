@@ -34,22 +34,34 @@
 //别名
 //\think\Route::alias('u','index/user');
 
-\think\Route::get('php',function (){
-    return '我是php';
-});
+//\think\Route::get('php',function (){
+//    return '我是php';
+//});
 
 //\think\Route::bind('index/blog/hello');
 
+//\think\Route::bind('blog/index');
+
+\think\Route::bind('user/index');
+
+//\think\Route::resource('blog','index/blog');
+
 return [
-    '__pattern__'=>['name'=>'[a-zA-Z]+'],
+    'add/[:id]'=>'user/index/adduser'
+//    'show/:id'=>'blog/index/show',
+//    'del/:id'=>'blog/index/del'
+//    '__pattern__'=>['name'=>'[a-zA-Z]+'],
+//
+//    'demo/[:name]$'=>'index/index/demo?pwd=666666',
+//    'pattern/[:id]/[:name]'=>['index/index/pattern',['method'=>'get','ext'=>'html|htm'],['id'=>'\d+']],
+//    'baidu'=>'http://www.baidu.com',
+//
+//    '[user]'=>[
+//     '[:id]'=> ['index/user/show',['method'=>'get']],                    '[:name]'=>['index/user/show',['method'=>'post']]
+//    ],
+//    'blog/[:id]'=>'index/blog/show',
+//    'hello'=>'index/before/hello',
+//    'data'=>'index/before/data'
 
-    'demo/[:name]$'=>'index/index/demo?pwd=666666',
-    'pattern/[:id]/[:name]'=>['index/index/pattern',['method'=>'get','ext'=>'html|htm'],['id'=>'\d+']],
-    'baidu'=>'http://www.baidu.com',
-
-    '[user]'=>[
-     '[:id]'=> ['index/user/show',['method'=>'get']],                    '[:name]'=>['index/user/show',['method'=>'post']]
-    ],
-    'blog/[:id]'=>'index/blog/show'
 ];
 

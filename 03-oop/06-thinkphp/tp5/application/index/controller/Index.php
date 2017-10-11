@@ -8,33 +8,15 @@ use think\Env;
 
 class Index extends Controller
 {
+    public function _initialize()
+    {
+        echo 'init<br/>';
+    }
+
     public function index($name = 'php')
     {
-
-
-        return $name;
-        //环境配置
-//        return dump($_ENV);
-
-        //return dump(Env::get('database.user'));
-        //动态配置
-//        Config::set('app_test','test','user');
-//        Config::set('app_test2','test2','user');
-//        Config::set('app_test3','test3','user');
-//        Config::set('app_test4','test4','user');
-
-//        return dump(Config::get('','user'));
-//        return dump(config('',null,'user'));
-//
-//        return dump(config('app_debug'));
-
-
-
-        //return dump(config('?a.arr'));
-        //return dump(Config::has('a.arr'));
-//        Config类
-        //return dump(Config::load('config'));
-        //return dump(config());
+        return 'index';
+//        return config();
     }
 
     public function hello(){
