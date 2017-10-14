@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--2,使用默认值-->
+    <title>{$title|default='默认标题'}</title>
+</head>
+<body>
+
+<!--1,使用函数 用法{:函数}-->
+<h4>{:strtoupper(md5($name))}</h4>
+
+<h1>index控制器下的index模板</h1>
+<!--6,模板注释{//} {/**/}-->
+<h2>赋值:{//$title}</h2>
+<h3>{//$name}</h3>
+
+<!--3,使用运算符-->
+<h3>{$age+100}</h3>
+
+<!--4,三元运算符-->
+<h4>{$age>10?'大于10岁':'小于10岁'}</h4>
+
+<!--5,原样输出不解析-->
+{literal}
+    原样输出{$age}
+{/literal}
+
+
+</body>
+</html>
