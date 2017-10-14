@@ -17,9 +17,9 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => TRUE,
     // 应用Trace
-    'app_trace'              => true,
+    'app_trace'              => false,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -122,11 +122,6 @@ return [
     // +----------------------------------------------------------------------
 
     'template'               => [
-
-        //使用模板布局
-        'layout_on' => false,
-        'layout_name' => 'layout',
-
         // 模板引擎类型 支持 php think 支持扩展
         'type'         => 'Think',
         // 模板路径

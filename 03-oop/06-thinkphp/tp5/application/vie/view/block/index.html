@@ -1,0 +1,15 @@
+
+<!--子模板-->
+{extend name='block/base'}
+
+<!--重载父模板块的内容-->
+{block name='main'}子模板自己的内容{/block}
+
+<!--删除父模板中的块的内容-->
+{block name='left'}{/block}
+
+<!--继续保留父模板的内容,并追加子模板的内容-->
+{block name='right'}
+{__block__}
+<a href="#">我是子模板新的内容</a>
+{/block}

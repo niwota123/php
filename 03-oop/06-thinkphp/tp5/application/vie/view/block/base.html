@@ -1,0 +1,19 @@
+<!--父模板-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{block name='title'}父标题{/block}</title>
+</head>
+<body>
+{block name='header'}
+<h3>父头部</h3>
+{/block}
+{block name='left'}父左边栏{/block}
+{block name='right'}父右边栏{/block}
+{block name='main'}父内容{/block}
+{block name='footer'}
+<h3>父底部</h3>
+{/block}
+</body>
+</html>
