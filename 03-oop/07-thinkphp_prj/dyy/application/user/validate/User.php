@@ -19,8 +19,8 @@ class User extends Validate {
         'passwd' => 'require|min:6',
         'passwd_r' => 'require|confirm:passwd',
         'email' => 'require|email|unique:user,email',
-        'email_code' => 'checkEmailCode',
-        'captcha'=>'require|captcha'
+        'email_code' => 'require|checkEmailCode',
+        'captcha'=>'captcha'
     ];
     protected $message = [
         'username.require' => '请填写用户名',
@@ -45,11 +45,11 @@ class User extends Validate {
     //自定义验证方法
     protected function checkEmailCode($email_code){
 
-        if (empty($email_code) || !Session::get('email_code')) {
-            return [
-                'email_code' => '请填写验证码'
-            ];
-        }
+//        if (empty($email_code) || !Session::get('email_code')) {
+//            return [
+//                'email_code' => '请填写验证码'
+//            ];
+//        }
         if ($email_code !== Session::get('email_code')) {
             return [
                 'email_code' => '验证码错误'

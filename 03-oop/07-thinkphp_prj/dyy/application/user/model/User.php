@@ -126,5 +126,10 @@ class User extends Model {
         return true;
     }
 
+    //登出
+    static public function loginOut(){
+        Session::delete('auth');
+    }
+
 
 }

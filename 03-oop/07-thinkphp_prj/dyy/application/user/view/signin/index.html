@@ -1,3 +1,4 @@
+{__NOLAYOUT__}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +26,12 @@
         </div>
         <div class="form-area">
             <div class="group {$errors.username?'has-error':''}">
-                <input name="username" type="text" class="form-control" placeholder="Username" value="{$Think.post.username}">
+                <input name="username" type="text" class="form-control" placeholder="Username" value="{$Think.post.username?:'super'}">
                 <i class="fa fa-user"></i>
                 <span class="help-block">{$errors.username?$errors.username:''}</span>
             </div>
             <div class="group {$errors.passwd?'has-error':''}">
-                <input name="passwd" type="password" class="form-control" placeholder="Password" value="{$Think.post.passwd}">
+                <input name="passwd" type="password" class="form-control" placeholder="Password" value="{$Think.post.passwd?:'123456'}">
                 <i class="fa fa-key"></i>
                 <span class="help-block">{$errors.passwd?$errors.passwd:''}</span>
             </div>
