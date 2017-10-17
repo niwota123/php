@@ -21,6 +21,7 @@ class UserBase extends Controller {
     public function checkUserAuth() {
         $User = new User;
         $userInfo = $User->getAuthInfo();
+
         if (!$userInfo){
             $this->redirect("/user/signin");
             die();

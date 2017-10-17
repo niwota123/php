@@ -14,4 +14,11 @@ class Index extends UserBase
     {
         return $this->fetch();
     }
+
+    //登出
+    public function loginOut(){
+        User::loginOut();
+        $this->success('登出成功','/index/index');
+        exit;
+    }
 }
