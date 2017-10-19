@@ -240,4 +240,36 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //每张打印金额
+    'perPageFee' => 0.1,
+    //订单状态
+    'order_state' => [
+        'create' => '待支付',
+        'paid' => '已支付',
+        'produce' => '商家确认',
+        'delivery' => '打印完成',
+        'received' => '领取',
+    ],
+    //订单状态数字表示法
+    'order_state_int' => [
+        'create' => 1,
+        'paid' => 2,
+        'produce' => 3,
+        'delivery' => 4,
+        'received' => 5
+    ],
+    //支付方式
+    'pay_type' => [
+        'online' => '在线支付'
+    ],
+    //颜色
+    'color' => [
+        'colorful' => '彩色',
+        'monochrome' => '黑白'
+    ],
+    //双面
+    'sided' => [
+        'single' => '单面',
+        'twice' => '双面'
+    ],
 ];
