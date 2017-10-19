@@ -59,24 +59,7 @@
         map.enableKeyboard();//启用键盘上下左右键移动地图
     }
 
-    //地图请求数据函数：
-    function get_shop_list(){
 
-        $.getJSON("/user/creat_print/shoplist", {min_lng: minPoint.lng,min_lat: minPoint.lat,max_lng: maxPoint.lng,max_lat: maxPoint.lat}, function (data) {
-            if (data.status == 2000) {
-                var slists = data.data;
-                for (var i=0; i < slists.length; i++) {
-                    var seller = slists[i];
-                    var shopIcon = new BMap.Icon("http://oss.dayinyun.cn/Public/Home/Images/icon_32.png", new BMap.Size(32, 32));
-                    var marker = new BMap.Marker(new BMap.Point(seller['seller_lng'], seller['seller_lat']), {icon: shopIcon});  // 创建标注
-                    var content = "<h4>" + seller["seller_name"] + "</h4><button class=\"btn btn-danger\" onclick=\"select_this_shop(" + seller["seller_id"] + ")\" >在这打印</a>";
-                    window.map.addOverlay(marker);
-                    marker.addEventListener("click", openInfo.bind(null, content));
-
-                }
-            }
-        });
-    }
 
 
     function openInfo(content, e) {
@@ -106,6 +89,24 @@
 
     get_shop_list();
 
+    //地图请求数据函数：
+    function get_shop_list(){
+
+        $.getJSON("/user/creat_print/shoplist", {min_lng: minPoint.lng,min_lat: minPoint.lat,max_lng: maxPoint.lng,max_lat: maxPoint.lat}, function (data) {
+            if (data.status == 2000) {
+                var slists = data.data;
+                for (var i=0; i < slists.length; i++) {
+                    var seller = slists[i];
+                    var shopIcon = new BMap.Icon("http://oss.dayinyun.cn/Public/Home/Images/icon_32.png", new BMap.Size(32, 32));
+                    var marker = new BMap.Marker(new BMap.Point(seller['seller_lng'], seller['seller_lat']), {icon: shopIcon});  // 创建标注
+                    var content = "<h4>" + seller["seller_name"] + "</h4><button class=\"btn btn-danger\" onclick=\"select_this_shop(" + seller["seller_id"] + ")\" >在这打印</a>";
+                    window.map.addOverlay(marker);
+                    marker.addEventListener("click", openInfo.bind(null, content));
+
+                }
+            }
+        });
+    }
 
 
 

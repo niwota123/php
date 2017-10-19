@@ -33,7 +33,7 @@ class Orders extends Model {
         //计算价格
         $printFilesFee = $this->caclPrintFilesFee($files);
         //订单号
-        //$order_id = $userInfo->id.date('YmdHis').mt_rand(0,60);
+        $order_id = $userInfo->id.date('YmdHis').mt_rand(0,60);
         //先创建订单
         $odata = [
             'o_state' => 'create',
