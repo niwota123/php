@@ -7,9 +7,11 @@
  */
 
 namespace app\user\controller;
+use app\biz\model\Biz;
 use app\user\controller\UserBase;
 use app\user\model\User;
 use app\user\model\Files;
+use think\console\command\make\Model;
 use think\Request;
 use think\File;
 
@@ -23,6 +25,7 @@ class CreatPrint extends UserBase {
         'pdf' => 'application/pdf'
     ];
 
+    //文件列表
     public function index(){
 
         $User = new User;
@@ -32,13 +35,16 @@ class CreatPrint extends UserBase {
         ];
         $list = Files::where($where)->order("f_id DESC")->paginate(5);
         $this->view->list = $list;
+        $this->view->subtitle = "新建打印";
         return $this->fetch();
     }
 
+    //上传页面
     public function upload(){
         return $this->fetch();
     }
 
+    //上传功能
     public function webuploader() {
 //        sleep(5);
 
@@ -47,7 +53,7 @@ class CreatPrint extends UserBase {
         //根据mime类型判断
         //还可以根据后缀名判断
 //        $mimes = ['image/jpeg', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf'];
-        $extensions = ['jpg', 'png', 'doc', 'docx', 'pdf'];
+        $extensions = ['jpeg','jpg', 'png', 'doc', 'docx', 'pdf'];
         $request = Request::instance();
 
         if (!$request->has('file', 'file')) {
@@ -76,7 +82,7 @@ class CreatPrint extends UserBase {
          *
          */
 
-        $file->move($uploadPath, time() . ".". $extension);
+//        $file->move($uploadPath, time() . ".". $extension);
 
 //        $file->rule(function() {
 //            return date("m-d") . "/" . md5(microtime(true));
@@ -96,15 +102,14 @@ class CreatPrint extends UserBase {
         die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
     }
 
+    //生成地址
     protected function generateFilepath() {
         $User = new User;
         $userInfo = $User->getAuthInfo();
         return $userInfo['username'] . "/" . date("m-d") . "/" . md5(microtime(true));
     }
 
-    /**
-     * 记录信息到数据表
-     */
+    //保存数据到数据库
     protected function record(File $file, $filepath) {
         $User = new User;
         $userInfo = $User->getAuthInfo();
@@ -119,9 +124,7 @@ class CreatPrint extends UserBase {
         $row = Files::create($data);
     }
 
-    /**
-     * 删除
-     */
+    //删除
     public function trash() {
         //获取ID
         $request = Request::instance();
@@ -146,23 +149,16 @@ class CreatPrint extends UserBase {
         $this->trashFileRecord($row);
         //删除信息
         $this->trashFile($row);
-        $back = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/user/preprint/";
+        $back = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/user/creat_print/";
         $this->redirect($back);
     }
 
-    /**
-     * 删除文件记录
-     *
-     * @param type $frow
-     */
+    //删除数据库
     protected function trashFileRecord(Files $frow) {
         return $frow->delete();
     }
 
-    /**
-     * 删除文件
-     * @param Files $frow
-     */
+    //删除文件
     protected function trashFile(Files $frow) {
         $absoluteFilepath = ROOT_PATH . '/public/uploads/' . $frow['f_filepath'] . "." . $frow['f_ext'];
         if (file_exists($absoluteFilepath)) {
@@ -170,9 +166,7 @@ class CreatPrint extends UserBase {
         }
     }
 
-    /**
-     * 下载
-     */
+    //下载
     public function download() {
         $request = Request::instance();
         $id = $request->param("id");
@@ -197,5 +191,77 @@ class CreatPrint extends UserBase {
         header("Content-type:" . $this->contentTypes[$frow['f_ext']]);
         echo file_get_contents($absoluteFilepath);
         exit();
+    }
+
+
+    //选择商店
+    public function selectShop(Request $request){
+        if ($request->isPost() === false) {
+            $this->error("只能POST请求");
+        }
+        //获得文件数据-id
+        $ids = $request->post("file-id/a");
+        $this->view->fileids = implode("-", $ids);
+        $this->view->subtitle = "选择打印店";
+        return $this->fetch();
+    }
+
+    //获得商店列表
+    public function shopList(Request $request){
+        $biz = new Biz();
+        $row =  $biz->getList($request->param());
+        $res = [
+            'status' => 2000,
+            'data' => $row
+        ];
+
+        return $res;
+    }
+
+    //订单确认
+    public function confirm(Request $request){
+        if ($request->isPost() === false) {
+            $this->error("只能POST请求");
+        }
+        //获取参数
+        //获取要打印的文件
+        $fileids = $request->post("file-ids");
+        if (empty($fileids)) {
+            $this->error("file-ids参数错误");
+        }
+        $fids = explode("-", $fileids);
+
+        //获取打印店信息
+        $shopid = $request->post("shopid/d");
+        if (empty($shopid)) {
+            $this->error("shopid参数错误");
+        }
+
+        //判断打印文件和打印店信息的合法性
+
+        $User = new User;
+        $userInfo = $User->getAuthInfo();
+
+        $files = Files::all([
+            'f_id' => ['in', implode(",", $fids)],
+            'f_uid' => $userInfo['id']
+        ]);
+        if (empty($files)) {
+            $this->error("请至少选择一个文件");
+        }
+
+
+        $shop = Biz::get([
+            'b_id' => $shopid
+        ]);
+        if (empty($shop)) {
+            $this->error("请选择打印店");
+        }
+        //渲染视图
+        //视图中循环，生成表单
+        $this->view->files = $files;
+        $this->view->shop = $shop;
+        $this->view->subtitle = "设置打印参数";
+        return $this->fetch();
     }
 }

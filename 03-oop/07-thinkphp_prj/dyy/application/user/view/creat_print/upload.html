@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="/static/webuploader/webuploader.css" />
 <link rel="stylesheet" type="text/css" href="/static/webuploader/upload/style.css" />
 
-<script type="text/javascript" src="/static/layer/layer.js"></script>
 
 <div id="wrapper">
     <div id="container">
@@ -33,6 +32,8 @@
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="/static/layer/layer.js"></script>
+
 <script type="text/javascript">
     var $wrap = $('#uploader'),
         // 状态栏，包括进度和控制按钮
@@ -74,8 +75,8 @@
 //        },
         accept: {
             title: 'Images',
-            extensions: 'pdf',
-            mimeTypes: 'application/*'
+            extensions: 'pdf,msword,vnd.openxmlformats-officedocument.wordprocessingml.document,png,jpeg,jpg',
+            mimeTypes: 'application/*,image/jpeg,image/png'
         },
 
         // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。

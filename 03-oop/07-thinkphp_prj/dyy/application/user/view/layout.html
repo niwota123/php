@@ -30,10 +30,10 @@
             <a href="#" data-toggle="dropdown" class="dropdown-toggle hdbutton"><i class="fa fa-user color6"></i> {$userInfo.username} <span class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-list">
                 <li role="presentation" class="dropdown-header">Profile</li>
-                <li><a href="#"><i class="fa falist fa-inbox"></i>我的打印<span class="badge label-danger">4</span></a></li>
-                <li><a href="#"><i class="fa falist fa-file-o"></i>Files</a></li>
+                <li><a href="#"> 我的打印</a></li>
+                <li><a href="#">Files</a></li>
                 <li class="divider"></li>
-                <li><a href="{:url('index/loginout')}"><i class="fa falist fa-power-off"></i> Logout</a></li>
+                <li><a href="{:url('index/loginout')}"> Logout</a></li>
             </ul>
         </li>
 
@@ -80,6 +80,10 @@ Bootstrap Core JavaScript File
 Plugin.js - Some Specific JS codes for Plugin Settings
 ================================================ -->
 <script type="text/javascript" src="__STATIC__/js/plugins.js"></script>
+
+<!--弹框-->
+<script type="text/javascript" src="/static/layer/layer.js"></script>
+<link href="/static/resources/style.css" rel="stylesheet">
 
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <!-- START CONTENT -->
