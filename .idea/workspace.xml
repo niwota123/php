@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40911599-4f71-4392-b598-82b43ca4d952" name="Default" comment="tp_prj">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/03-oop/01-oopbase/06-extends.php" afterPath="$PROJECT_DIR$/03-oop/01-oopbase/06-extends.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/public/uploads/super/10-19/a0a74375e10a8a48edad8be6ab2d6a98.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/public/uploads/super/10-19/da4f12200ad2fc4a89088909a2e874b8.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/.gitignore" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/controller/CreatPrint.php" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/controller/CreatPrint.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/model/Orders.php" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/model/Orders.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/view/creat_print/selectshop.html" afterPath="$PROJECT_DIR$/03-oop/07-thinkphp_prj/dyy/application/user/view/creat_print/selectshop.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -108,6 +113,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -136,8 +143,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -243,6 +248,7 @@
       <workItem from="1507964073794" duration="590000" />
       <workItem from="1508225512477" duration="1446000" />
       <workItem from="1508396947868" duration="139000" />
+      <workItem from="1508401745370" duration="641000" />
     </task>
     <task id="LOCAL-00001" summary="final&amp;magic">
       <created>1505963553445</created>
@@ -374,7 +380,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66095000" />
+    <option name="totallyTimeSpent" value="66736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -386,14 +392,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1036" height="780" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="22" width="1036" height="780" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1987705" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24487706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31288344" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25696594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25696594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42879257" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />

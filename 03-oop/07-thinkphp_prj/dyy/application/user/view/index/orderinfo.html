@@ -144,6 +144,15 @@
     </form>
 </div>
 {/if}
+{if condition="$oRes.o_state=='delivery'"}
+<div class="col-md-12">
+    <form id="form-order-received" action="{:url('/user/index/receivedOrder')}" method="post">
+        <input type="hidden" name="oid" value="{$oRes.o_id}">
+        <button id="btn-received" class="btn btn-danger" type="button">已领取</button>
+    </form>
+</div>
+{/if}
+
 
 </div>
 
@@ -174,4 +183,10 @@
             content: $('#pay-process')
         });
     });
+
+    $("#btn-received").on("click", function(){
+        $("#form-order-received").submit();
+    });
+
+    //
 </script>

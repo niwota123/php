@@ -200,7 +200,7 @@ class CreatPrint extends UserBase {
             $this->error("只能POST请求");
         }
         //获得文件数据-id
-        $ids = $request->post("file-id/a");
+        $ids = $request->param("file-id/a");
         $this->view->fileids = implode("-", $ids);
         $this->view->subtitle = "选择打印店";
         return $this->fetch();

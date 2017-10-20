@@ -27,6 +27,8 @@ class Signin extends Controller {
                 exit();
             }
         }
+        $this->view->subTitle = '用户登录';
+
         return $this->fetch();
     }
 }

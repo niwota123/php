@@ -9,6 +9,7 @@
 namespace app\user\model;
 
 
+use app\biz\model\Biz;
 use think\Model;
 use think\Db;
 use traits\model\SoftDelete;
@@ -33,7 +34,7 @@ class Orders extends Model {
         //计算价格
         $printFilesFee = $this->caclPrintFilesFee($files);
         //订单号
-        //$order_id = $userInfo->id.date('YmdHis').mt_rand(0,60);
+        $order_id = $userInfo->id.date('YmdHis').mt_rand(0,60);
         //先创建订单
         $odata = [
             'o_state' => 'create',
@@ -96,6 +97,17 @@ class Orders extends Model {
         return $money;
     }
 
+    //商家订单查询
+    public function getBixOrderListByUid($uid, $limit){
+        $list = $this
+            ->alias("o")
+            ->join("biz b", "o.o_b_id = b.b_id", "left")
+            ->field("o.*, b.b_username, b.b_name")
+            ->where("b.b_id", $uid)
+            ->order("o.o_id DESC")
+            ->paginate($limit);
+        return $list;
+    }
     /**
      * 订单查询
      */
@@ -108,6 +120,22 @@ class Orders extends Model {
             ->order("o.o_id DESC")
             ->paginate($limit);
         return $list;
+    }
+
+    /**
+     * 根据订单ID获取信息和商户id
+     * @param int $id
+     * @param int $uid
+     */
+    public function getOrderInfoByIdAndBid($id, $bid) {
+        $row = $this
+            ->alias("o")
+            ->join("biz b", "o.o_b_id = b.b_id", "left")
+            ->field("o.*, b.b_username, b.b_name, b.b_address")
+            ->where("o.o_id", $id)
+            ->where("b.b_id", $bid)
+            ->find();
+        return $row;
     }
 
     /**
@@ -152,6 +180,39 @@ class Orders extends Model {
             'ot_operate_information' => "已完成支付，等待打印",
         ]);
         if ($uRes && $oRes && $otRes) {
+            Db::commit();
+            return true;
+        } else {
+            Db::rollback();
+        }
+    }
+
+    public function changeOrderState(Orders $order, $username,$state){
+        Db::startTrans();
+        $msgInfo = NULL;
+        switch ($state){
+            case'produce':
+                $msgInfo = '商家已确认，等待打印';
+            break;
+            case'delivery':
+                $msgInfo = '打印完成,请前往门店领取';
+                break;
+            default:
+                break;
+        }
+        //订单改为已支付
+        $oRes = Orders::where("o_id", $order['o_id'])
+            ->update([
+                "o_state" => $state
+            ]);
+        //订单时间线加入记录
+        $otRes = OrderTimeline::create([
+            'ot_o_id' => $order['o_id'],
+            'ot_operator' => $username,
+            'ot_operate_time' => date("Y-m-d H:i:s"),
+            'ot_operate_information' => $msgInfo,
+        ]);
+        if ( $oRes && $otRes) {
             Db::commit();
             return true;
         } else {
