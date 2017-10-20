@@ -87,6 +87,29 @@ class Index extends UserBase
 
     }
 
+
+    //领取
+    public function receivedOrder(){
+        //1.获取订单ID参数，并过滤和判断
+        $oid = request()->post("oid/d");
+        if (!$oid) {
+            $this->error("oid参数错误");
+        }
+
+        //2.获取订单信息，并判断a.订单是否存在;b.订单是否是自己的;3.订单是否已完成支付
+        $Orders  = new Orders();
+        $oRes = $Orders->getOrderInfoByIdAndUid($oid, $this->userInfo['id']);
+        if (!$oRes){
+            $this->error("指定oid的订单不存在");
+        }
+
+        //确认
+        $uRes = $Orders->changeOrderState($oRes, $this->userInfo['username'],'received');
+        if ($uRes) {
+            $this->success("已领取");
+        }
+    }
+
     //登出
     public function loginOut(){
         User::loginOut();

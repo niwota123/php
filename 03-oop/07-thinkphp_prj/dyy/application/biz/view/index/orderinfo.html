@@ -136,57 +136,31 @@
     </div>
 </div>
 
-{if condition="$oRes.o_state=='create'"}
+{if condition="$oRes.o_state=='paid'"}
 <div class="col-md-12">
-    <form id="form-order-pay" action="{:url('/user/index/orderpay')}" method="post" target="_blank">
+    <form  id="h-form" action="{:url('/biz/index/orderconfirm')}" method="post">
         <input type="hidden" name="oid" value="{$oRes.o_id}">
-        <button id="btn-pay" class="btn btn-danger" type="button">立即支付</button>
+        <button id="btn-submit" class="btn btn-danger" type="button">信息确认</button>
     </form>
 </div>
 {/if}
-{if condition="$oRes.o_state=='delivery'"}
+{if condition="$oRes.o_state=='produce'"}
 <div class="col-md-12">
-    <form id="form-order-received" action="{:url('/user/index/receivedOrder')}" method="post">
+    <form  id="h-form" action="{:url('/biz/index/orderprint')}" method="post">
         <input type="hidden" name="oid" value="{$oRes.o_id}">
-        <button id="btn-received" class="btn btn-danger" type="button">已领取</button>
+        <button id="btn-submit" class="btn btn-danger" type="button">打印完成</button>
     </form>
 </div>
 {/if}
-
 
 </div>
 
 </div>
 <!-- END CONTAINER -->
-
-<div id="pay-process" style="display: none; width: 600px; height: 200px;">
-    <div class="row">
-        <h3 class="col-md-offset-5">请完成支付</h3>
-        <div class="col-md-offset-2 col-md-4">
-            <button class="btn btn-info" onclick="layer.closeAll();">已完成支付</button>
-        </div>
-        <div class="col-md-offset-2 col-md-4">
-            <button class="btn btn-warning" onclick="layer.closeAll();">取消</button>
-        </div>
-    </div>
-</div>
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <script type="text/javascript">
-    $("#btn-pay").on("click", function(){
-        $("#form-order-pay").submit();
-        layer.open({
-            type: 1,
-            shade: false,
-            title: "支付信息",
-            area: [$("#pay-process").width() + 20, $("#pay-process").height() + 50],
-            offset: ['100px'],
-            content: $('#pay-process')
-        });
-    });
+    $("#btn-submit").on("click", function(){
+        $("#h-form").submit();
 
-    $("#btn-received").on("click", function(){
-        $("#form-order-received").submit();
     });
-
-    //
 </script>

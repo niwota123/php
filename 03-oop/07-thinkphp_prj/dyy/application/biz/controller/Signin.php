@@ -2,13 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2017/10/13
- * Time: 11:05
+ * Date: 2017/10/20
+ * Time: 9:38
  */
 
-namespace app\user\controller;
+namespace app\biz\controller;
 
-use app\user\model\User;
+
+use app\biz\model\Biz;
 use think\Controller;
 
 class Signin extends Controller {
@@ -16,19 +17,18 @@ class Signin extends Controller {
 
         if ($this->request->isPost())
         {
-            $model = new User();
+            $model = new Biz();
             $row = $model->signin($this->request->post());
             if ( ! $row)
             {
                 $this->view->errors = $model->errors;
             } else
             {
-                $this->success("登录成功", '/user/index');
+                $this->success("登录成功", '/biz/index');
                 exit();
             }
         }
-        $this->view->subTitle = '用户登录';
-
-        return $this->fetch();
+        $this->view->subTitle = '商家登录';
+        return $this->fetch('user@signin/index');
     }
 }

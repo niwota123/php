@@ -16,6 +16,8 @@ class UserBase extends Controller {
     protected function _initialize()
     {
         $this->checkUserAuth();
+        $this->checkUserAccess();
+
     }
 
     public function checkUserAuth() {
@@ -28,5 +30,19 @@ class UserBase extends Controller {
         }
         $this->userInfo = $userInfo;
         $this->view->userInfo = $userInfo;
+    }
+
+    /**
+     * 检查用户的接入权限
+     */
+    protected function checkUserAccess() {
+        $User = new User();
+        if(!$User->rbac($this->userInfo['id'])) {
+            $this->error("对不起，您没有权限");
+            die();
+        } else {
+            return true;
+        }
+
     }
 }

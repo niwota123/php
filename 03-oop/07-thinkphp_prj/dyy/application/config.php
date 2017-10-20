@@ -248,7 +248,7 @@ return [
         'paid' => '已支付',
         'produce' => '商家确认',
         'delivery' => '打印完成',
-        'received' => '领取',
+        'received' => '已领取',
     ],
     //订单状态数字表示法
     'order_state_int' => [

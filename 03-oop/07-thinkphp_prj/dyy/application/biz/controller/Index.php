@@ -1,10 +1,101 @@
 <?php
 namespace app\biz\controller;
-
-class Index
+use app\biz\model\Biz;
+use app\user\model\Orders;
+use think\Request;
+use app\user\model\OrderGoods;
+use app\user\model\OrderTimeline;
+class Index extends BizBase
 {
     public function index()
     {
-        return '<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px;} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_bd568ce7058a1091"></thinkad>';
+        $limit = 10;
+        $this->view->subtitle = "商家订单";
+        $Orders = new Orders();
+        $list = $Orders->getBixOrderListByUid($this->userInfo['b_id'], $limit);
+
+        $this->view->list = $list;
+        return $this->fetch();
     }
+
+    public function loginOut(){
+        Biz::loginOut();
+        $this->success('登出成功','/index/index');
+        exit;
+    }
+
+    public function orderinfo() {
+        $request = Request::instance();
+        $id = $request->param("id", "", "intval");
+        if (!$id) {
+            $this->error("ID参数错误");
+            die();
+        }
+
+        //订单信息
+        $Orders = new Orders();
+        $oRes = $Orders->getOrderInfoByIdAndBid($id, $this->userInfo['b_id']);
+        if (!$oRes) {
+            $this->error("指定ID的订单不存在");
+        }
+
+        //订单的商品信息
+        $OrderGoods = new OrderGoods();
+        $ogRes = $OrderGoods->getInfoByOrderid($id);
+
+        //订单的时间线信息
+        $otRes = OrderTimeline::all([
+            'ot_o_id' => $id
+        ]);
+
+        $this->view->oRes = $oRes;
+        $this->view->ogRes = $ogRes;
+        $this->view->otRes = $otRes;
+        $this->view->subtitle = "订单信息";
+        return $this->view->fetch();
+    }
+
+    public function orderconfirm(){
+        //1.获取订单ID参数，并过滤和判断
+        $oid = request()->post("oid/d");
+        if (!$oid) {
+            $this->error("oid参数错误");
+        }
+
+        //2.获取订单信息，并判断a.订单是否存在;b.订单是否是自己的;3.订单是否已完成支付
+        $Orders  = new Orders();
+        $oRes = $Orders->getOrderInfoByIdAndBid($oid, $this->userInfo['b_id']);
+        if (!$oRes){
+            $this->error("指定oid的订单不存在");
+        }
+
+        //确认
+        $uRes = $Orders->changeOrderState($oRes, $this->userInfo['b_username'],'produce');
+        if ($uRes) {
+            $this->success("确认成功");
+        }
+    }
+
+    public function orderprint(){
+        //1.获取订单ID参数，并过滤和判断
+        $oid = request()->post("oid/d");
+        if (!$oid) {
+            $this->error("oid参数错误");
+        }
+
+        //2.获取订单信息，并判断a.订单是否存在;b.订单是否是自己的;3.订单是否已完成支付
+        $Orders  = new Orders();
+        $oRes = $Orders->getOrderInfoByIdAndBid($oid, $this->userInfo['b_id']);
+        if (!$oRes){
+            $this->error("指定oid的订单不存在");
+        }
+
+        //确认
+        $uRes = $Orders->changeOrderState($oRes, $this->userInfo['b_username'],'delivery');
+        if ($uRes) {
+            $this->success("打印成功");
+        }
+    }
+
+
 }

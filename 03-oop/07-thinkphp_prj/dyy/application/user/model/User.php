@@ -10,6 +10,7 @@ namespace app\user\model;
 
 
 use think\Model;
+use think\model\Collection;
 use traits\model\SoftDelete;
 use think\Session;
 
@@ -131,5 +132,42 @@ class User extends Model {
         Session::delete('auth');
     }
 
+    //权限管理
+    /**
+     * Rbac 访问权限
+     */
+    public function rbac($id) {
+
+        $row = $this
+            ->alias("u")
+            ->join("role_user ru", "u.id = ru.user_id", "left")
+            ->join("role r", "ru.role_id = r.id", "left")
+            ->join("access a", "r.id = a.role_id", "left")
+            ->join("node n", "a.node_id = n.id", "left")
+            ->field("r.role_name, a.role_id, a.node_id, n.mca, n.name")
+            ->where("u.id", $id)
+            ->cache(60)
+            ->select();
+
+        //dump(Collection($row)->toArray());
+        if (!$row) {
+            return false;
+        }
+        $mcas = [];
+        foreach ($row as $k => $v) {
+            $mcas[$v['mca']] = $v->toArray();
+        }
+        $mcas_keys = array_keys($mcas);
+
+
+
+        $request = request();
+        $uri = strtolower($request->module() . "/" . $request->controller() . "/" . $request->action());
+
+        if (!in_array($uri, $mcas_keys)) {
+            return false;
+        }
+        return true;
+    }
 
 }
