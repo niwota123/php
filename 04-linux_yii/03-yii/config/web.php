@@ -51,13 +51,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
-            'rules' => [
-                [
-                    'pattern' => 'a',
-                    'route' => 'admin/default',
-                    'suffix' => '.html',
-                ],
-            ],
+
         ],
 
     ],

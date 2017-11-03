@@ -6,8 +6,6 @@
 
     <?= $this->blocks['block3'] ?>
 
-
-        <h1>Hello</h1>
         <?= $content ?>
 
 <?php $this->endContent(); ?>
