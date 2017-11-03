@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\EntryForm;
+use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -23,13 +25,19 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout','login','signup','demo'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'allow' => true,
+                        'actions' => ['login','signup','demo'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['logout','signup'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+
                 ],
             ],
             'verbs' => [
@@ -60,6 +68,9 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionDemo(){
+        return 'aaaaa';
+    }
     /**
      * Displays homepage.
      *
@@ -77,19 +88,69 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new LoginForm();//验证功能
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('login', [
+
+
+        //用户实例
+        //var_dump(Yii::$app->user->identity);
+        //用户id
+        //var_dump(Yii::$app->user->id);
+        //访客
+        //return var_dump(Yii::$app->user->isGuest);
+
+//        $model = new LoginForm();
+//        if (Yii::$app->request->isPost){
+//            //获得用户
+//            $model->load(Yii::$app->request->post());
+//            $user_name = $model->username;
+//
+//            $user_identity = User::findOne(['username'=>$user_name]);
+//            //login 两个参数:1,user-model 2,过期时间(前提已经开启了自动登录,这个时间设置的是cookie的过期时间)
+//            $res = Yii::$app->user->login($user_identity);
+//            if ($res){
+//                //用户实例
+//                var_dump(Yii::$app->user->identity);
+//                //用户id
+//                var_dump(Yii::$app->user->id);
+//                //访客
+//                return var_dump(Yii::$app->user->isGuest);
+//            }
+//            return var_dump($user_identity);
+//        }
+//
+//
+//        return $this->render('login',['model'=>$model]);
+
+        //使用用户身份登录
+    }
+
+    public function actionSignup()
+    {
+
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                return '注册成功';
+            }
+        }
+
+        return $this->render('signup', [
             'model' => $model,
         ]);
     }
-
     /**
      * Logout action.
      *
