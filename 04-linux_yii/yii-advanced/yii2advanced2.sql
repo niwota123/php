@@ -10,10 +10,76 @@ Target Server Type    : MYSQL
 Target Server Version : 50629
 File Encoding         : 65001
 
-Date: 2017-11-02 18:13:14
+Date: 2017-11-04 16:35:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `cid` int(10) NOT NULL AUTO_INCREMENT,
+  `pid` int(10) NOT NULL DEFAULT '0',
+  `mid` int(10) NOT NULL DEFAULT '1',
+  `model` int(5) NOT NULL DEFAULT '1',
+  `sequence` int(10) NOT NULL DEFAULT '0',
+  `show` int(10) NOT NULL DEFAULT '1',
+  `type` int(11) NOT NULL DEFAULT '1',
+  `name` varchar(250) DEFAULT NULL,
+  `urlname` varchar(250) DEFAULT NULL,
+  `subname` varchar(250) DEFAULT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  `class_tpl` varchar(250) DEFAULT NULL,
+  `content_tpl` varchar(250) DEFAULT NULL,
+  `page` int(10) DEFAULT NULL,
+  `keywords` varchar(250) DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `seo_content` text,
+  `content_order` varchar(250) DEFAULT NULL,
+  `lang` int(10) NOT NULL DEFAULT '1',
+  `content` text,
+  PRIMARY KEY (`cid`),
+  UNIQUE KEY `urlname` (`urlname`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES ('1', '0', '1', '1', '0', '1', '0', '关于我们', 'about', '', '/public/images/noimage.jpg', 'channel.html', 'content.html', '19', '', '', '', 'inputtime ASC', '1', '0');
+INSERT INTO `category` VALUES ('2', '0', '1', '1', '0', '1', '0', '新闻资讯', 'news', '', '/public/images/noimage.jpg', 'channel.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('3', '0', '1', '1', '0', '1', '0', '义工文化', 'vculture', '', '/public/images/noimage.jpg', 'channel.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('4', '0', '1', '1', '0', '1', '0', '义工培训', 'vclass', '', '/public/images/noimage.jpg', 'channel.html', 'content.html', '11', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('5', '0', '1', '1', '0', '1', '1', '财务公开', 'breport', '', '/public/images/noimage.jpg', 'channel_one.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('6', '0', '1', '1', '0', '1', '1', '文件下载', 'download', '', '/public/images/noimage.jpg', 'channel_one.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('7', '0', '1', '2', '0', '1', '1', '儿童服务', 'etfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('8', '0', '1', '2', '0', '1', '1', '长者服务', 'zzfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('9', '0', '1', '2', '0', '1', '1', '社区服务', 'sqfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('10', '0', '1', '2', '0', '1', '1', '助学服务', 'zxfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', null);
+INSERT INTO `category` VALUES ('11', '0', '1', '2', '0', '1', '1', '助残服务', 'zcfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('12', '0', '1', '2', '0', '1', '1', '法律服务', 'flfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('13', '0', '1', '2', '0', '1', '1', '应急服务', 'yjfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('14', '0', '1', '2', '0', '1', '1', '关爱露宿者', 'galsz', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('15', '0', '1', '2', '0', '1', '1', '大型活动服务', 'dxhdfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('16', '0', '1', '2', '0', '1', '1', '专业支撑服务', 'zyzcfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('17', '0', '1', '2', '0', '1', '1', '义工培训活动', 'ygpx', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('18', '0', '1', '2', '0', '1', '1', '其他服务', 'qtfw', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('19', '1', '2', '1', '0', '1', '1', '协会简介', 'aboutus', '', '/public/images/noimage.jpg', 'page.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('20', '1', '2', '1', '0', '1', '1', '协会章程', 'baselaw', '', '/public/images/noimage.jpg', 'page.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('21', '1', '2', '1', '0', '1', '1', '组织架构', 'structure', '', '/public/images/noimage.jpg', 'page.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('22', '1', '2', '1', '0', '1', '1', '联系我们', 'contact', '', '/public/images/noimage.jpg', 'page.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('23', '2', '1', '1', '0', '1', '1', '公告通知', 'announce', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('24', '2', '1', '1', '0', '1', '1', '工作动态', 'dynamics', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('25', '2', '1', '1', '0', '1', '1', '政策法规', 'policy', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('26', '2', '1', '1', '0', '1', '1', '公益新闻', 'media', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('27', '3', '1', '1', '0', '1', '1', '义工分享', 'vshare', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('28', '3', '1', '1', '0', '1', '1', '活动分享', 'eshare', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('29', '3', '1', '1', '0', '1', '1', '义工达人', 'vstar', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('30', '4', '1', '1', '0', '1', '1', '培训预告', 'tnotice', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('31', '4', '1', '1', '0', '1', '1', '培训风采', 'tphoto', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('32', '4', '1', '1', '0', '1', '1', '培训视频', 'tvideo', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
+INSERT INTO `category` VALUES ('33', '4', '1', '1', '0', '1', '1', '培训资料', 'tfiles', '', '/public/images/noimage.jpg', 'list.html', 'content.html', '19', '', '', '', 'updatetime DESC', '1', '0');
 
 -- ----------------------------
 -- Table structure for events
@@ -44,12 +110,64 @@ CREATE TABLE `events` (
   `event_attention` text COMMENT '注意事项',
   `event_fee` decimal(6,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of events
 -- ----------------------------
-INSERT INTO `events` VALUES ('1', '测试', 'http://www.yiiad.io/frontend/web/uploads/20171102/rK21bkesfeBHwbvdf9LAp5p_q5gMXpfJ.jpg', '0', '0', ',,', '10', '2017-01-01 00:00:00', '2017-10-10 00:00:00', '100', '2', '王总', '18988898989', '北京天坛', 'yes', 'no', 'no', '2017-09-08 00:00:00', 'aaa', 'bbb', 'cccc', 'dddd', null);
+INSERT INTO `events` VALUES ('9', '六一儿童节', 'http://www.yiiad.io/frontend/web/uploads/20171103/vLLGeL4nH32q2cI6Cm-xaHGYEhRVzUvE.jpg', '7', '1', '1,2,3', '100', '2017-11-09 00:00:00', '2017-11-11 00:00:00', '100', '2', '王总', '18988898989', '鸟巢', 'no', 'yes', 'no', '2017-11-08 00:00:00', 'aaa', 'bbb', 'ccc', 'ddd', null);
+INSERT INTO `events` VALUES ('10', '敬老院活动', '', '8', '1', '1,2,3', '100', '2017-11-08 00:00:00', '2017-11-11 00:00:00', '10', '2', '王总', '18988898989', '天安门', 'no', 'yes', 'yes', '2017-11-08 00:00:00', 'aaa', 'bbb', 'ccc', 'ddd', null);
+INSERT INTO `events` VALUES ('11', '助学活动', 'http://www.yiiad.io/frontend/web/uploads/20171103/2PaLikZcqsNa3UARsMQHSxDU1xFPltgv.jpg', '10', '2', '338,339,340', '100', '2017-11-09 00:00:00', '2017-11-11 00:00:00', '100', '2', '王总', '18988898989', '和平区', 'no', 'yes', 'yes', '2017-11-09 00:00:00', 'aaa', 'bbb', 'ccc', 'ddd', null);
+
+-- ----------------------------
+-- Table structure for event_set
+-- ----------------------------
+DROP TABLE IF EXISTS `event_set`;
+CREATE TABLE `event_set` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` int(5) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of event_set
+-- ----------------------------
+INSERT INTO `event_set` VALUES ('1', '1', '周一');
+INSERT INTO `event_set` VALUES ('2', '1', '周二');
+INSERT INTO `event_set` VALUES ('3', '1', '周三');
+INSERT INTO `event_set` VALUES ('4', '1', '周四');
+INSERT INTO `event_set` VALUES ('5', '1', '周五');
+INSERT INTO `event_set` VALUES ('6', '1', '周六');
+INSERT INTO `event_set` VALUES ('7', '1', '周日');
+INSERT INTO `event_set` VALUES ('8', '1', '短期');
+INSERT INTO `event_set` VALUES ('9', '1', '长期');
+
+-- ----------------------------
+-- Table structure for event_team
+-- ----------------------------
+DROP TABLE IF EXISTS `event_team`;
+CREATE TABLE `event_team` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `eid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `uname` varchar(250) DEFAULT NULL,
+  `vcard` varchar(250) DEFAULT NULL,
+  `tel` varchar(100) DEFAULT NULL,
+  `table` varchar(30) DEFAULT NULL,
+  `fid` int(11) DEFAULT NULL,
+  `vtime` varchar(20) DEFAULT NULL,
+  `vzt` int(5) DEFAULT NULL,
+  `status` int(5) DEFAULT NULL,
+  `ip` varchar(50) DEFAULT NULL,
+  `dtime` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of event_team
+-- ----------------------------
+INSERT INTO `event_team` VALUES ('1', '9', '0', '18888888888', '20171104004501580', '18888888888', null, null, null, null, '0', null, '1509781512');
 
 -- ----------------------------
 -- Table structure for migration

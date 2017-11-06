@@ -1,6 +1,11 @@
 <?php
 use yii\helpers\Html;
+
+use backend\assets\AppAsset;
+AppAsset::register($this);  // $this 代表视图对象
+
 ?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +21,9 @@ use yii\helpers\Html;
     jQuery Library
     ================================================ -->
     <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-
+    <?php $this->head() ?>
 </head>
+<?php $this->beginBody() ?>
 <body>
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <!-- START TOP -->
@@ -211,4 +217,7 @@ Bootstrap Date Range Picker
 
 
 </body>
+<?php $this->endBody() ?>
 </html>
+
+<?php $this->beginPage() ?>

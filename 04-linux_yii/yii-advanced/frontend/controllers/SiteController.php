@@ -1,6 +1,10 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\Category;
+use backend\models\Events;
+use backend\models\EventSet;
+use backend\models\EventTeam;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -18,6 +22,7 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    public $layout = 'main';
     /**
      * @inheritdoc
      */
@@ -77,9 +82,129 @@ class SiteController extends Controller
 
     public function actionEvents()
     {
-        return $this->render('events');
+        $weekModels = EventSet::find()->orderBy('id DESC')->all();
+        $typeModels = Category::findAll(['model'=>2]);
+        $eventsModels = NULL;
+        if (Yii::$app->request->isGet){
+
+
+            $id = $type=$week=$status= 0;
+            if (isset(Yii::$app->request->get('1')['id'])){
+                $id  = Yii::$app->request->get('1')['id']?:0;
+            }else{
+                $type = Yii::$app->request->get('1')['type']?:0;
+                $week = Yii::$app->request->get('1')['week']?:0;
+                $status = Yii::$app->request->get('1')['status']?:0;
+            }
+
+            $sql = "select * from events";
+
+            if ($type!=0){
+                $sql .= " where event_type_id='$type'";
+            }
+            if ($week!=0){
+                if ($type==0){
+                    $sql .= " where event_weekday='$week'";
+                }else{
+                    $sql .= " and event_weekday='$week'";
+
+                }
+            }
+
+            if ($id==0){
+                $eventsModels = Events::findBySql($sql)->all();
+
+                return $this->render('events',[
+                    'weekModels'=>$weekModels,
+                    'typeModels'=>$typeModels,
+                    'eventsModels'=>$eventsModels,
+                    'type'=>$type,
+                    'week'=>$week,
+                    'status'=>$status,
+                    'id'=>$id
+                ]);
+            }else{
+                $num = mt_rand(0,999);
+                $time = date('YmdHis',time());
+                $v_card = $time.$num;
+                $eventsModel = Events::findOne($id);
+                return $this->render('events_detail',[
+                    'weekModels'=>$weekModels,
+                    'typeModels'=>$typeModels,
+                    'eventsModel'=>$eventsModel,
+                    'type'=>$type,
+                    'week'=>$week,
+                    'status'=>$status,
+                    'v_card'=>$v_card
+                ]);
+            }
+
+
+        }
+
+
+
+
     }
 
+
+    public function actionBaoMing(){
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        //"vcard":"20171104001159783","mobile":"18888888888","eid":"3"
+        //一系类的判断
+        //1,判断是否过期-活动截止
+        //2,判断人数是否满-活动人数
+        //3,是否已经报名-team表中是否已经存在数
+        $eventId = Yii::$app->request->post('eid');
+        $mobile = Yii::$app->request->post('mobile');
+        $vcard = Yii::$app->request->post('vcard');
+
+        $eventModel = Events::findOne(['id'=>$eventId]);
+
+        //{"status":1,"message":"\u62a5\u540d\u6210\u529f\uff0c\u8bf7\u5728\u60a8\u7684\u62a5\u540d\u901a\u8fc7\u540e\u6309\u8bf4\u660e\u53c2\u52a0\u6d3b\u52a8\uff01"}
+
+        //是否参加过
+        $teamModel = EventTeam::find()->where("tel=$mobile")->where("eid=$eventId")->all();
+        if ($teamModel){
+            //已经存在
+            return ['status'=>0,'message'=>'不能重复报名'];
+        }
+
+        //过期
+        $endTime = strtotime($eventModel->event_recruit_end_time);
+        if ($endTime-time()<0){
+            //过期
+            return ['status'=>0,'message'=>'活动报名已经截止'];
+        }
+
+        //人数
+        if ($eventModel->event_headcount=0){
+            return ['status'=>0,'message'=>'报名人数已满'];
+        }
+
+        //没错误
+        $teamModel = new EventTeam();
+        $teamModel->eid = $eventId;
+        $teamModel->vcard = $vcard;
+        $teamModel->tel = $mobile;
+        $teamModel->uname = $mobile;
+        $teamModel->uid = 0;
+        $teamModel->status = 0;
+        $teamModel->dtime = time();
+
+        if ($teamModel->save()){
+            //保持成功
+            return ['status'=>1,'message'=>'报名成功'];
+        }else{
+            return ['status'=>0,'message'=>'报名失败,未知错误'];
+        }
+
+
+
+
+        //return Yii::$app->request->post();
+    }
     /**
      * Logs in a user.
      *

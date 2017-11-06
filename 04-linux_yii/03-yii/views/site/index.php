@@ -4,6 +4,12 @@
 
 $this->title = 'My Yii Application';
 ?>
+
+<?php
+use yii\jui\DatePicker;
+?>
+<?= DatePicker::widget(['name' => 'date']) ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
