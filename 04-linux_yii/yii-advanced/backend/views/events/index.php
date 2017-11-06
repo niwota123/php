@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $dataProvider = new ActiveDataProvider([
     'query' => \backend\models\Events::find(),
     'pagination' => [
-        'pageSize' => 1,
+        'pageSize' => 2,
     ],
         ]);
 ?>
@@ -99,6 +99,16 @@ $dataProvider = new ActiveDataProvider([
                                         $str .= $r->name;
                                     }
                                     return $str;
+                                }
+                            ],
+                            [
+                                'attribute'=>'event_type_id',
+                                //value:自定义属性的值
+                                'value'=>function($data){
+                                    //$data一整条的数据
+                                     $type = $data->event_type_id;
+                                    $type_model = \backend\models\Category::findOne(['cid'=>$type]);
+                                    return $type_model->name;
                                 }
                             ],
                             [

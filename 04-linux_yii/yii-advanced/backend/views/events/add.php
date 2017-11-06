@@ -4,11 +4,13 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use yii\jui\DatePicker;
 ?>
 
 <script type="text/javascript" src="/admin/js/jquery.min.js"></script>
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <script type="text/javascript" src="/admin/layer/layer.js"></script>
+
 
 <style>
     .upload-thumb {
@@ -45,6 +47,7 @@ use yii\bootstrap\Html;
     <div class="row">
         <div class="col-md-12">
             <?php
+
             $form = ActiveForm::begin([
                     //表单的id
                         'id' => 'member-profile',
@@ -74,11 +77,11 @@ use yii\bootstrap\Html;
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($model, 'event_type_id')->dropDownList(['0'=>'类型']) ?>
+                    <?= $form->field($model, 'event_type_id')->dropDownList($model->getEventTypes()) ?>
                 </div>
                 <div class="col-md-6">
 <!--                    dropDownList($items,$option)下拉菜单 $items->key真实值 $items->value显示的值-->
-                    <?= $form->field($model, 'event_weekday')->dropDownList(['0'=>'周日','1'=>'周一','2'=>'周二','3'=>'周三','4'=>'周四','5'=>'周五','6'=>'周六']) ?>
+                    <?= $form->field($model, 'event_weekday')->dropDownList($model->getWeekDay()) ?>
                 </div>
             </div>
             <div class="row">
@@ -144,17 +147,25 @@ use yii\bootstrap\Html;
             </div>
             <div class="row">
                 <div class="col-md-6">
+
                     <?=
-                    $form->field($model, 'event_start_time')->textInput([
-                        'class' => 'date-picker'
-                    ])
+
+                    $form->field($model, 'event_start_time')->widget(DatePicker::className(), ['clientOptions' => [
+                        'model' => $model,
+                        'attribute' => 'event_start_time',
+                        'language' => 'zh-CN',
+                        'dateFormat' => 'php:Y-m-d',
+                    ]]);
                     ?>
                 </div>
                 <div class="col-md-6">
                     <?=
-                    $form->field($model, 'event_end_time')->textInput([
-                        'class' => 'date-picker'
-                    ])
+                    $form->field($model, 'event_end_time')->widget(DatePicker::className(), ['clientOptions' => [
+                        'model' => $model,
+                        'attribute' => 'event_end_time',
+                        'language' => 'zh-CN',
+                        'dateFormat' => 'php:Y-m-d',
+                    ]]);
                     ?>
                 </div>
             </div>
@@ -198,9 +209,12 @@ use yii\bootstrap\Html;
             <div class="row">
                 <div class="col-md-6">
                     <?=
-                    $form->field($model, 'event_recruit_end_time')->textInput([
-                        'class' => 'date-picker'
-                    ])
+                    $form->field($model, 'event_recruit_end_time')->widget(DatePicker::className(), ['clientOptions' => [
+                        'model' => $model,
+                        'attribute' => 'event_recruit_end_time',
+                        'language' => 'zh-CN',
+                        'dateFormat' => 'php:Y-m-d',
+                    ]]);
                     ?>
                 </div>
             </div>
@@ -257,6 +271,13 @@ use yii\bootstrap\Html;
 </div>
 <!-- END CONTAINER -->
 
+
+<script type="text/javascript">jQuery(document).ready(function () {
+        jQuery('#events-event_start_time').datepicker({"dateFormat":"yy-m-d"});
+        jQuery('#events-event_end_time').datepicker({"dateFormat":"yy-m-d"});
+        jQuery('#events-event_recruit_end_time').datepicker({"dateFormat":"yy-m-d"});
+    });
+</script>
 
 <script>
 <?php

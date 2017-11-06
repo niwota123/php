@@ -67,18 +67,18 @@ class Events extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'id' => '序号',
+            'id' => 'ID',
             'event_name' => '活动名称',
             'event_thumb' => '缩略图',
             'event_type_id' => '活动的分类',
             'event_weekday' => '日期归档',
             'event_area' => '地区',
             'event_fee_type_id' => 'Event Fee Type ID',
-            'event_start_time' => 'Event Start Time',
-            'event_end_time' => 'Event End Time',
+            'event_start_time' => '活动开始时间',
+            'event_end_time' => '活动结束时间',
             'event_headcount' => '招募人数',
             'event_service_hours' => '服务小时',
-            'event_contact' => 'Event Contact',
+            'event_contact' => '联系人',
             'event_contact_phone' => ' 联系人号码',
             'event_place' => '集合地点',
             'event_recruit_type' => '招募类型',
@@ -110,6 +110,26 @@ class Events extends \yii\db\ActiveRecord {
         }
         
         Yii::$app->cache->set($cacheKey, $result);
+        return $result;
+    }
+
+    public function getWeekDay(){
+        $row =  EventSet::find()->all();
+         if (!empty($row)) {
+            foreach ($row as $k => $v) {
+                $result[$v['id']] = $v['name'];
+            }
+        }
+        return $result;
+    }
+
+    public function getEventTypes(){
+        $row = Category::find()->where(['model'=>2])->all();
+        if (!empty($row)) {
+            foreach ($row as $k => $v) {
+                $result[$v['cid']] = $v['name'];
+            }
+        }
         return $result;
     }
     
