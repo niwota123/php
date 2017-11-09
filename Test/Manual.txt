@@ -1,5 +1,8 @@
 01.课件
-02.二次开发{ --ecshop , --phpcms  }
-03.客户关系管理系统 {  --CRM  }
-04.开源轻论坛{ --EoenYoubbs }
+02.二次开发                     { --ecshop , --phpcms  ajax}
+03.project 项目管理工具软件     { --cookie, --session , crm}
+04.linux,Yii                    {--linux思维导图 --cache[momcache][Redis]缓存, --Yii框架}
+05.other                        {--微信公众平台开发,  --Web安全(夸站攻击) }
+06.OOP 面向对象编程             { --oop基础, --GD库(水印,验证码), --ThinkPHP5.0   }
+07.开源轻论坛                   { --EoenYoubbs }
 Test 测试 说明
